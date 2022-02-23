@@ -77,6 +77,8 @@
 |UNKNOWN_ASSET_MAJOR_VERSION|Unknown glTF major asset version: `%1`.|Error|
 |UNKNOWN_ASSET_MINOR_VERSION|Unknown glTF minor asset version: `%1`.|Warning|
 |UNUSED_EXTENSION_REQUIRED|Unused extension '`%1`' cannot be required.|Error|
+|VRM1_TEXTURE_TRANSFORM_ROTATION|Rotation of texture in KHR_texture_transform is set to `%1`, but should not be used or set to 0.0|Warning|
+|VRM1_TEXTURE_TRANSFORM_TEXCOORD|TexCoord in KHR_texture_transform is set to `%1`, but should not be used|Warning|
 ## LinkError
 | Code | Message | Severity |
 |------|---------|----------|
