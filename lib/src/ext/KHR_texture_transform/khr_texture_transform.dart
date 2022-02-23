@@ -1,5 +1,6 @@
 /*
  * # Copyright (c) 2016-2019 The Khronos Group Inc.
+ * # Copyright (c) 2022 Noeri Huisman
  * #
  * # Licensed under the Apache License, Version 2.0 (the "License");
  * # you may not use this file except in compliance with the License.
@@ -46,13 +47,31 @@ class KhrTextureTransform extends GltfProperty {
       checkMembers(map, KHR_TEXTURE_TRANSFORM_MEMBERS, context);
     }
 
+    final offset = getFloatList(map, OFFSET, context,
+        def: const [0.0, 0.0], lengthsList: const [2]);
+
+    final rotation = getFloat(map, ROTATION, context, def: 0);
+
+    final scale = getFloatList(map, SCALE, context,
+        def: const [1.0, 1.0], lengthsList: const [2]);
+
+    final texCoord = getUint(map, TEX_COORD, context);
+
+    // https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_vrm-1.0-beta#obsolete-properties-of-khr_texture_transform-with-vrm1
+    // `rotation` and `texCoord` are not recommended for VRM
+    if (rotation != 0.0) {
+      context.addIssue(SemanticError.vrm1TextureTransformRotation, args: [rotation]);
+    }
+
+    if (texCoord != -1) {
+      context.addIssue(SemanticError.vrm1TextureTransformTexCoord, args: [texCoord]);
+    }
+
     return KhrTextureTransform._(
-        getFloatList(map, OFFSET, context,
-            def: const [0.0, 0.0], lengthsList: const [2]),
-        getFloat(map, ROTATION, context, def: 0),
-        getFloatList(map, SCALE, context,
-            def: const [1.0, 1.0], lengthsList: const [2]),
-        getUint(map, TEX_COORD, context),
+        offset,
+        rotation,
+        scale,
+        texCoord,
         getExtensions(map, KhrTextureTransform, context),
         getExtras(map, context));
   }

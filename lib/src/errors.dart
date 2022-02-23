@@ -1,5 +1,6 @@
 /*
  * # Copyright (c) 2016-2019 The Khronos Group Inc.
+ * # Copyright (c) 2022 Noeri Huisman
  * #
  * # Licensed under the Apache License, Version 2.0 (the "License");
  * # you may not use this file except in compliance with the License.
@@ -510,6 +511,17 @@ class SemanticError extends IssueType {
       'KHR_LIGHTS_PUNCTUAL_LIGHT_SPOT_ANGLES',
       (args) => 'outerConeAngle (${args[1]}) is less than or equal to '
           'innerConeAngle (${args[0]}).');
+
+  // VRM specific semantic errors
+  static final SemanticError vrm1TextureTransformRotation = SemanticError._(
+      'VRM1_TEXTURE_TRANSFORM_ROTATION',
+      (args) => 'Rotation of texture in KHR_texture_transform is set to ${args[0]}, but should not be used or set to 0.0',
+      Severity.Warning);
+
+  static final SemanticError vrm1TextureTransformTexCoord = SemanticError._(
+      'VRM1_TEXTURE_TRANSFORM_TEXCOORD',
+      (args) => 'TexCoord in KHR_texture_transform is set to ${args[0]}, but should not be used',
+      Severity.Warning);
 
   SemanticError._(String type, ErrorFunction message,
       [Severity severity = Severity.Error])
