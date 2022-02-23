@@ -1,5 +1,6 @@
 /*
  * # Copyright (c) 2016-2019 The Khronos Group Inc.
+ * # Copyright (c) 2022 Noeri Huisman
  * #
  * # Licensed under the Apache License, Version 2.0 (the "License");
  * # you may not use this file except in compliance with the License.
@@ -41,7 +42,7 @@ class GltfReaderResult {
 abstract class GltfReader {
   factory GltfReader.filename(Stream<List<int>> stream, String filename,
       [Context context]) {
-    if (filename.toLowerCase().endsWith('.glb')) {
+    if (filename.toLowerCase().endsWith('.glb') || filename.toLowerCase().endsWith('.vrm')) {
       return GlbReader(stream, context);
     }
 
