@@ -22,7 +22,7 @@ import 'package:gltf/src/ext/extensions.dart';
 
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/meta.md
 const String NAME = 'name';
-const String VERSION = 'verison';
+const String VERSION = 'version';
 const String AUTHORS = 'authors';
 const String COPYRIGHT_INFORMATION = 'copyrightInformation';
 const String CONTACT_INFORMATION = 'contactInformation';
@@ -71,7 +71,7 @@ class VrmcVrmMeta extends GltfProperty {
   final String contactInformation;
   final List<String> references;
   final String thirdPartyLicenses;
-  final String thumbnailImage;
+  final int thumbnailImage;
   final String licenseUrl;
   final String avatarPermission;
   final bool allowExcessivelyViolentUsage;
@@ -83,6 +83,8 @@ class VrmcVrmMeta extends GltfProperty {
   final bool allowRedistribution;
   final String modification;
   final String otherLicenseUrl;
+
+  Texture _thumbnailTexture;
 
   VrmcVrmMeta._(
       this.name,
@@ -120,7 +122,7 @@ class VrmcVrmMeta extends GltfProperty {
         getString(map, CONTACT_INFORMATION, context),
         getStringList(map, REFERENCES, context),
         getString(map, THIRD_PARTY_LICENSES, context),
-        getString(map, THUMBNAIL_IMAGE, context), // FIXME
+        getIndex(map, THUMBNAIL_IMAGE, context),
         getString(map, LICENSE_URL, context, req: true),
         getString(map, AVATAR_PERMISSION, context),
         getBool(map, ALLOW_EXCESSIVELY_VIOLENT_USAGE, context),
@@ -134,5 +136,19 @@ class VrmcVrmMeta extends GltfProperty {
         getString(map, OTHER_LICENSE_URL, context),
         getExtensions(map, VrmcVrm, context),
         getExtras(map, context));
+  }
+
+  @override
+  void link(Gltf gltf, Context context) {
+    _thumbnailTexture = gltf.textures[thumbnailImage];
+
+    if (context.validate && thumbnailImage != -1) {
+      if (_thumbnailTexture == null) {
+        context.addIssue(LinkError.unresolvedReference,
+            name: INDEX, args: [thumbnailImage]);
+      } else {
+        _thumbnailTexture.markAsUsed();
+      }
+    }
   }
 }
