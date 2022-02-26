@@ -63,6 +63,15 @@ class VrmcVrm extends GltfProperty {
         getExtensions(map, VrmcVrm, context),
         getExtras(map, context));
   }
+
+  @override
+  void link(Gltf gltf, Context context) {
+    if (meta != null) {
+      context.path.add(META);
+      meta.link(gltf, context);
+      context.path.removeLast();
+    }
+  }
 }
 
 const Extension vrmcVrm =
