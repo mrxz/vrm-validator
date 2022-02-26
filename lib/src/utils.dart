@@ -445,7 +445,7 @@ List<int> getGlIntList(Map<String, Object> map, String name, Context context,
 }
 
 List<String> getStringList(
-    Map<String, Object> map, String name, Context context) {
+    Map<String, Object> map, String name, Context context, {bool req = false}) {
   final value = _getGuarded(map, name, _kArray, context);
   if (value is List<Object>) {
     if (value.isEmpty) {
@@ -477,6 +477,8 @@ List<String> getStringList(
   } else if (value != null) {
     context
         .addIssue(SchemaError.typeMismatch, name: name, args: [value, _kArray]);
+  } else if (req) {
+    context.addIssue(SchemaError.undefinedProperty, args: [name]);
   }
   return null;
 }
