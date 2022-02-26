@@ -16,11 +16,11 @@
 
 library gltf.extensions.vrmc_vrm;
 
-import 'package:gltf/src/utils.dart';
 import 'package:gltf/src/base/gltf_property.dart';
-import 'package:gltf/src/ext/extensions.dart';
+import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_first_person.dart';
 import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_humanoid.dart';
 import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_meta.dart';
+import 'package:gltf/src/ext/extensions.dart';
 
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/README.md
 const String VRMC_VRM = 'VRMC_vrm';
@@ -44,10 +44,12 @@ class VrmcVrm extends GltfProperty {
   final String specVersion;
   final VrmcVrmMeta meta;
   final VrmcVrmHumanoid humanoid;
+  final VrmcVrmFirstPerson firstPerson;
 
   VrmcVrm._(this.specVersion,
       this.meta,
       this.humanoid,
+      this.firstPerson,
       Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
@@ -62,10 +64,13 @@ class VrmcVrm extends GltfProperty {
 
     final humanoid = getObjectFromInnerMap(map, HUMANOID, context, VrmcVrmHumanoid.fromMap, req: true);
 
+    final firstPerson = getObjectFromInnerMap(map, FIRST_PERSON, context, VrmcVrmFirstPerson.fromMap);
+
     return VrmcVrm._(
         specVersion,
         meta,
         humanoid,
+        firstPerson,
         getExtensions(map, VrmcVrm, context),
         getExtras(map, context));
   }
@@ -81,6 +86,12 @@ class VrmcVrm extends GltfProperty {
     if (humanoid != null) {
       context.path.add(HUMANOID);
       humanoid.link(gltf, context);
+      context.path.removeLast();
+    }
+
+    if (firstPerson != null) {
+      context.path.add(FIRST_PERSON);
+      firstPerson.link(gltf, context);
       context.path.removeLast();
     }
   }
