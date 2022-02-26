@@ -41,7 +41,7 @@ const String ALLOW_REDISTRIBUTION = 'allowRedistribution';
 const String MODIFICATION = 'modification';
 const String OTHER_LICENSE_URL = 'otherLicenseUrl';
 
-const List<String> VRMC_VRM_MEMBERS = <String>[
+const List<String> VRMC_VRM_META_MEMBERS = <String>[
   NAME,
   VERSION,
   AUTHORS,
@@ -71,7 +71,7 @@ class VrmcVrmMeta extends GltfProperty {
   final String contactInformation;
   final List<String> references;
   final String thirdPartyLicenses;
-  final int thumbnailImage;
+  final int _thumbnailImageIndex;
   final String licenseUrl;
   final String avatarPermission;
   final bool allowExcessivelyViolentUsage;
@@ -94,7 +94,7 @@ class VrmcVrmMeta extends GltfProperty {
       this.contactInformation,
       this.references,
       this.thirdPartyLicenses,
-      this.thumbnailImage,
+      this._thumbnailImageIndex,
       this.licenseUrl,
       this.avatarPermission,
       this.allowExcessivelyViolentUsage,
@@ -111,7 +111,7 @@ class VrmcVrmMeta extends GltfProperty {
 
   static VrmcVrmMeta fromMap(Map<String, Object> map, Context context) {
     if (context.validate) {
-      checkMembers(map, VRMC_VRM_MEMBERS, context);
+      checkMembers(map, VRMC_VRM_META_MEMBERS, context);
     }
 
     return VrmcVrmMeta._(
@@ -140,12 +140,12 @@ class VrmcVrmMeta extends GltfProperty {
 
   @override
   void link(Gltf gltf, Context context) {
-    _thumbnailTexture = gltf.textures[thumbnailImage];
+    _thumbnailTexture = gltf.textures[_thumbnailImageIndex];
 
-    if (context.validate && thumbnailImage != -1) {
+    if (context.validate && _thumbnailImageIndex != -1) {
       if (_thumbnailTexture == null) {
         context.addIssue(LinkError.unresolvedReference,
-            name: INDEX, args: [thumbnailImage]);
+            name: INDEX, args: [_thumbnailImageIndex]);
       } else {
         _thumbnailTexture.markAsUsed();
       }
