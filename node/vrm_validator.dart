@@ -19,7 +19,7 @@
 // @dart=2.9
 
 @JS()
-library gltf_validator_npm;
+library vrm_validator_npm;
 
 import 'dart:async';
 import 'dart:typed_data';

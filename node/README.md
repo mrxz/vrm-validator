@@ -1,11 +1,11 @@
-# gltf-validator
+# vrm-validator
 
-This is an npm package for the official [glTF Validator](https://github.com/KhronosGroup/glTF-Validator/) compiled from Dart to JS.
+This is an npm package for the [VRM Validator](https://github.com/mrxz/vrm-validator/) by [Fern Solutions](https://fern.solutions) compiled from Dart to JS.
 
 ## Installation
 
 ```
-npm install --save gltf-validator
+npm install --save vrm-validator
 ```
 
 ## Examples
@@ -14,9 +14,9 @@ npm install --save gltf-validator
 
 ```javascript
 const fs = require('fs');
-const validator = require('gltf-validator');
+const validator = require('vrm-validator');
 
-const asset = fs.readFileSync('./Box.gltf');
+const asset = fs.readFileSync('./Avatar-1.0-beta.vrm');
 
 validator.validateBytes(new Uint8Array(asset))
     .then((report) => console.info('Validation succeeded: ', report))
@@ -26,9 +26,9 @@ validator.validateBytes(new Uint8Array(asset))
 ### Basic usage (Browser)
 
 ```javascript
-const validator = require('gltf-validator');
+const validator = require('vrm-validator');
 
-fetch('Box.gltf')
+fetch('Avatar-1.0-beta.vrm')
     .then((response) => response.arrayBuffer())
     .then((asset) => validator.validateBytes(new Uint8Array(asset)))
     .then((report) => console.info('Validation succeeded: ', report))
@@ -40,7 +40,7 @@ fetch('Box.gltf')
 ```javascript
 const fs = require("fs");
 const path = require("path");
-const validator = require('gltf-validator');
+const validator = require('vrm-validator');
 
 const filename = 'Box.gltf';
 const fullpath = __dirname + '/' + filename;

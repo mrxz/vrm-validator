@@ -41,7 +41,7 @@ final _truncatedWarning = querySelector('#truncatedWarning');
 final _validityLabel = querySelector('#validityLabel');
 
 final _isFileUri = window.location.protocol == 'file:';
-final _assetPattern = RegExp(r'^[^\/]*\.gl(?:tf|b)$', caseSensitive: false);
+final _assetPattern = RegExp(r'^[^\/]*\.(?:gl(?:tf|b)|vrm)$', caseSensitive: false);
 
 final _sw = Stopwatch();
 

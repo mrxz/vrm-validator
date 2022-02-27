@@ -1,4 +1,5 @@
 // Copyright 2021 The Khronos Group Inc.
+// Copyright 2022 Noeri Huisman
 //
 // SPDX-License-Identifier: Apache-2.0
 
@@ -86,7 +87,7 @@ const _webSource = 'web';
 @Task('Build native executable.')
 void exe() {
   final output = p.join(_getTarget(_binSource),
-      'gltf_validator${Platform.isWindows ? '.exe' : ''}');
+      'vrm_validator${Platform.isWindows ? '.exe' : ''}');
 
   final targetDir = Directory(_getTarget(_binSource));
   delete(targetDir);
@@ -97,7 +98,7 @@ void exe() {
   run(Platform.resolvedExecutable, arguments: [
     'compile',
     'exe',
-    'bin/gltf_validator.dart',
+    'bin/vrm_validator.dart',
     '--save-debugging-info=$outputDebug',
     '-o',
     output
@@ -117,7 +118,7 @@ void exeArchive() {
 
   if (Platform.isLinux || Platform.isMacOS) {
     final filename =
-        '../gltf_validator-$_version-${Platform.operatingSystem}64.tar.xz';
+        '../vrm_validator-$_version-${Platform.operatingSystem}64.tar.xz';
     run('tar',
         arguments: [
           '--create',
@@ -125,7 +126,7 @@ void exeArchive() {
           '--${Platform.isLinux ? 'group' : 'gid'}=0',
           '--xz',
           '--file=$filename',
-          'gltf_validator',
+          'vrm_validator',
           'LICENSE',
           'NOTICES',
           'docs'
@@ -154,7 +155,7 @@ void webArchive() {
   copy(File('LICENSE'), targetDir);
   copy(File('NOTICES'), targetDir);
 
-  final filename = 'build/gltf_validator-$_version-web.zip';
+  final filename = 'build/vrm_validator-$_version-web.zip';
   ZipFileEncoder().zipDirectory(targetDir, level: 9, filename: filename);
 }
 
@@ -179,7 +180,7 @@ void _npmBuild({bool release = true}) {
     // Do not redefine require to avoid webpack complaints
     final preamble =
         getPreamble(minified: true).replaceFirst('self.require=require,', '');
-    final file = File(p.join(_nodeTarget, 'gltf_validator.dart.js'));
+    final file = File(p.join(_nodeTarget, 'vrm_validator.dart.js'));
     file.writeAsStringSync(preamble + file.readAsStringSync());
   }
 

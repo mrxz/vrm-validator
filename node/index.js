@@ -14,7 +14,7 @@
  * # limitations under the License.
  */
 
-const validator = require('./gltf_validator.dart.js');
+const validator = require('./vrm_validator.dart.js');
 
 /**
  * Returns a version string.
