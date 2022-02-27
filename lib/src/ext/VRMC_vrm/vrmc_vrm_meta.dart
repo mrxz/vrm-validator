@@ -16,7 +16,6 @@
 
 library gltf.extensions.vrmc_vrm;
 
-import 'package:gltf/src/utils.dart';
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
