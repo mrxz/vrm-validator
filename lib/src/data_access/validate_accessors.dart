@@ -116,7 +116,9 @@ void validateAccessorsData(Gltf gltf, Context context) {
       continue;
     }
 
-    context.path..add(meshIndex.toString())..add(PRIMITIVES);
+    context.path
+      ..add(meshIndex.toString())
+      ..add(PRIMITIVES);
 
     mesh.primitives.forEachWithIndices((primitiveIndex, primitive) {
       assert(maxJoints > 0 && limitingSkinIndex != -1);
@@ -153,10 +155,14 @@ void validateAccessorsData(Gltf gltf, Context context) {
         return;
       }
 
-      context.path..add(primitiveIndex.toString())..add(ATTRIBUTES);
+      context.path
+        ..add(primitiveIndex.toString())
+        ..add(ATTRIBUTES);
 
       // add iterators from the current primitive to the global list
-      influencesIterators..addAll(jointsIterators)..addAll(weightsIterators);
+      influencesIterators
+        ..addAll(jointsIterators)
+        ..addAll(weightsIterators);
 
       // add a checker from the current primitive to the global list
       influencesCheckers.add(InfluencesChecker(context.getPointerString(),
@@ -165,9 +171,13 @@ void validateAccessorsData(Gltf gltf, Context context) {
           maxJointIndex: maxJoints - 1,
           limitingSkinIndex: limitingSkinIndex));
 
-      context.path..removeLast()..removeLast();
+      context.path
+        ..removeLast()
+        ..removeLast();
     });
-    context.path..removeLast()..removeLast();
+    context.path
+      ..removeLast()
+      ..removeLast();
   }
   context.path.removeLast();
 

@@ -32,10 +32,7 @@ class VrmcVrmExpressions extends GltfProperty {
   final Map<String, Expression> custom;
 
   VrmcVrmExpressions._(
-      this.preset,
-      this.custom,
-      Map<String, Object> extensions,
-      Object extras)
+      this.preset, this.custom, Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
   static VrmcVrmExpressions fromMap(Map<String, Object> map, Context context) {
@@ -116,7 +113,8 @@ class Expression extends GltfProperty {
       this.overrideBlink,
       this.overrideLookAt,
       this.overrideMouth,
-      Map<String, Object> extensions, Object extras)
+      Map<String, Object> extensions,
+      Object extras)
       : super(extensions, extras);
 
   static Expression fromMap(Map<String, Object> map, Context context) {
@@ -125,9 +123,12 @@ class Expression extends GltfProperty {
     }
 
     return Expression._(
-        getObjectList(map, MORPH_TARGET_BINDS, context, MorphTargetBind.fromMap),
-        getObjectList(map, MATERIAL_COLOR_BINDS, context, MaterialColorBind.fromMap),
-        getObjectList(map, TEXTURE_TRANSFORM_BINDS, context, TextureTransformBind.fromMap),
+        getObjectList(
+            map, MORPH_TARGET_BINDS, context, MorphTargetBind.fromMap),
+        getObjectList(
+            map, MATERIAL_COLOR_BINDS, context, MaterialColorBind.fromMap),
+        getObjectList(map, TEXTURE_TRANSFORM_BINDS, context,
+            TextureTransformBind.fromMap),
         getBool(map, IS_BINARY, context),
         getString(map, OVERRIDE_BLINK, context, def: 'none'),
         getString(map, OVERRIDE_LOOK_AT, context, def: 'none'),
@@ -173,7 +174,6 @@ class Expression extends GltfProperty {
   }
 }
 
-
 // Morph Target Bind
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.expressions.expression.morphTargetBind.schema.json
 const String NODE = 'node';
@@ -193,10 +193,7 @@ class MorphTargetBind extends GltfProperty {
 
   Node _node;
 
-  MorphTargetBind._(
-      this._nodeIndex,
-      this._morphTargetIndex,
-      this.weight,
+  MorphTargetBind._(this._nodeIndex, this._morphTargetIndex, this.weight,
       Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
@@ -226,7 +223,6 @@ class MorphTargetBind extends GltfProperty {
       }
     }
   }
-
 }
 
 // Material Color Bind
@@ -248,10 +244,7 @@ class MaterialColorBind extends GltfProperty {
 
   Material _material;
 
-  MaterialColorBind._(
-      this._materialIndex,
-      this.type,
-      this.targetValue,
+  MaterialColorBind._(this._materialIndex, this.type, this.targetValue,
       Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
@@ -263,7 +256,8 @@ class MaterialColorBind extends GltfProperty {
     return MaterialColorBind._(
         getIndex(map, MATERIAL, context, req: true),
         getString(map, TYPE, context, req: true),
-        getFloatList(map, TARGET_VALUE, context, lengthsList: const [4], req: true),
+        getFloatList(map, TARGET_VALUE, context,
+            lengthsList: const [4], req: true),
         getExtensions(map, MaterialColorBind, context),
         getExtras(map, context));
   }
@@ -302,14 +296,12 @@ class TextureTransformBind extends GltfProperty {
 
   Material _material;
 
-  TextureTransformBind._(
-      this._materialIndex,
-      this.scale,
-      this.offset,
+  TextureTransformBind._(this._materialIndex, this.scale, this.offset,
       Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
-  static TextureTransformBind fromMap(Map<String, Object> map, Context context) {
+  static TextureTransformBind fromMap(
+      Map<String, Object> map, Context context) {
     if (context.validate) {
       checkMembers(map, MATERIAL_COLOR_BIND_MEMBERS, context);
     }

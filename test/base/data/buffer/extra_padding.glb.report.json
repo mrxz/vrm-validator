@@ -1,7 +1,7 @@
 {
     "uri": "test/base/data/buffer/extra_padding.glb",
     "mimeType": "model/gltf-binary",
-    "validatorVersion": "2.0.0-dev.3.0",
+    "validatorVersion": "2.0.0-dev.3.5",
     "issues": {
         "numErrors": 0,
         "numWarnings": 1,

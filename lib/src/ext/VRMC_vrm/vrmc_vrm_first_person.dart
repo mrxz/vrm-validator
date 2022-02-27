@@ -23,15 +23,14 @@ import 'package:gltf/src/ext/extensions.dart';
 const String MESH_ANNOTATIONS = 'meshAnnotations';
 
 const List<String> VRMC_VRM_FIRST_PERSON_MEMBERS = <String>[
-  MESH_ANNOTATIONS
+  MESH_ANNOTATIONS,
 ];
 
 class VrmcVrmFirstPerson extends GltfProperty {
   final List<MeshAnnotation> meshAnnotations;
 
   VrmcVrmFirstPerson._(
-      this.meshAnnotations,
-      Map<String, Object> extensions, Object extras)
+      this.meshAnnotations, Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
   static VrmcVrmFirstPerson fromMap(Map<String, Object> map, Context context) {
@@ -60,7 +59,6 @@ class VrmcVrmFirstPerson extends GltfProperty {
   }
 }
 
-
 // Mesh Annotation
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.firstPerson.meshAnnotation.schema.json
 const String NODE = 'node';
@@ -78,9 +76,7 @@ class MeshAnnotation extends GltfProperty {
   Node _node;
 
   MeshAnnotation._(
-      this._nodeIndex,
-      this.type,
-      Map<String, Object> extensions, Object extras)
+      this._nodeIndex, this.type, Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
   static MeshAnnotation fromMap(Map<String, Object> map, Context context) {

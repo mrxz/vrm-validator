@@ -1,7 +1,7 @@
 {
     "uri": "test/base/data/accessor/unknown_type.gltf",
     "mimeType": "model/gltf+json",
-    "validatorVersion": "2.0.0-dev.3.1",
+    "validatorVersion": "2.0.0-dev.3.5",
     "issues": {
         "numErrors": 0,
         "numWarnings": 2,

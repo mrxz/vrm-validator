@@ -50,13 +50,15 @@ class VrmcVrm extends GltfProperty {
   final VrmcVrmLookAt lookAt;
   final VrmcVrmExpressions expressions;
 
-  VrmcVrm._(this.specVersion,
+  VrmcVrm._(
+      this.specVersion,
       this.meta,
       this.humanoid,
       this.firstPerson,
       this.lookAt,
       this.expressions,
-      Map<String, Object> extensions, Object extras)
+      Map<String, Object> extensions,
+      Object extras)
       : super(extensions, extras);
 
   static VrmcVrm fromMap(Map<String, Object> map, Context context) {
@@ -64,17 +66,24 @@ class VrmcVrm extends GltfProperty {
       checkMembers(map, VRMC_VRM_MEMBERS, context);
     }
 
-    final specVersion = getString(map, SPEC_VERSION, context, req: true, regexp: RegExp(r'^1\.0-beta$'));
+    final specVersion = getString(map, SPEC_VERSION, context,
+        req: true, regexp: RegExp(r'^1\.0-beta$'));
 
-    final meta = getObjectFromInnerMap(map, META, context, VrmcVrmMeta.fromMap, req: true);
+    final meta = getObjectFromInnerMap(map, META, context, VrmcVrmMeta.fromMap,
+        req: true);
 
-    final humanoid = getObjectFromInnerMap(map, HUMANOID, context, VrmcVrmHumanoid.fromMap, req: true);
+    final humanoid = getObjectFromInnerMap(
+        map, HUMANOID, context, VrmcVrmHumanoid.fromMap,
+        req: true);
 
-    final firstPerson = getObjectFromInnerMap(map, FIRST_PERSON, context, VrmcVrmFirstPerson.fromMap);
+    final firstPerson = getObjectFromInnerMap(
+        map, FIRST_PERSON, context, VrmcVrmFirstPerson.fromMap);
 
-    final lookAt = getObjectFromInnerMap(map, LOOK_AT, context, VrmcVrmLookAt.fromMap);
+    final lookAt =
+        getObjectFromInnerMap(map, LOOK_AT, context, VrmcVrmLookAt.fromMap);
 
-    final expressions = getObjectFromInnerMap(map, EXPRESSIONS, context, VrmcVrmExpressions.fromMap);
+    final expressions = getObjectFromInnerMap(
+        map, EXPRESSIONS, context, VrmcVrmExpressions.fromMap);
 
     return VrmcVrm._(
         specVersion,
@@ -109,7 +118,6 @@ class VrmcVrm extends GltfProperty {
   }
 }
 
-const Extension vrmcVrm =
-    Extension(VRMC_VRM, <Type, ExtensionDescriptor>{
+const Extension vrmcVrm = Extension(VRMC_VRM, <Type, ExtensionDescriptor>{
   Gltf: ExtensionDescriptor(VrmcVrm.fromMap),
 });

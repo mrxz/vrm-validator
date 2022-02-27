@@ -1,7 +1,7 @@
 {
     "uri": "test/base/data/mesh/invalid_attribute_escaped_name.gltf",
     "mimeType": "model/gltf+json",
-    "validatorVersion": "2.0.0-dev.3.2",
+    "validatorVersion": "2.0.0-dev.3.5",
     "issues": {
         "numErrors": 2,
         "numWarnings": 0,

@@ -1,7 +1,7 @@
 {
     "uri": "test/base/data/root/extensions_non_objects.gltf",
     "mimeType": "model/gltf+json",
-    "validatorVersion": "2.0.0-dev.3.4",
+    "validatorVersion": "2.0.0-dev.3.5",
     "issues": {
         "numErrors": 6,
         "numWarnings": 0,

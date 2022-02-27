@@ -34,10 +34,10 @@ Future main() async {
       final textureTransform = gltf.materials[0].emissiveTexture
           .extensions['KHR_texture_transform'] as KhrTextureTransform;
 
-      expect(textureTransform.offset, [0, 1]);
+      expect(textureTransform.offset, [0, 1.0]);
       expect(textureTransform.scale, [0.5, 0.5]);
-      expect(textureTransform.rotation, 1.57079632679);
-      expect(textureTransform.texCoord, 1);
+      expect(textureTransform.rotation, 0);
+      expect(textureTransform.texCoord, -1);
       expect(textureTransform.extensions, isEmpty);
     });
   });

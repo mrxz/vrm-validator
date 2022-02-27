@@ -61,12 +61,17 @@ class VrmcVrmLookAt extends GltfProperty {
     }
 
     return VrmcVrmLookAt._(
-        getFloatList(map, OFFSET_FROM_HEAD_BONE, context, lengthsList: const [3]),
+        getFloatList(map, OFFSET_FROM_HEAD_BONE, context,
+            lengthsList: const [3]),
         getString(map, TYPE, context),
-        getObjectFromInnerMap(map, RANGE_MAP_HORIZONTAL_INNER, context, RangeMap.fromMap),
-        getObjectFromInnerMap(map, RANGE_MAP_HORIZONTAL_OUTER, context, RangeMap.fromMap),
-        getObjectFromInnerMap(map, RANGE_MAP_VERTICAL_DOWN, context, RangeMap.fromMap),
-        getObjectFromInnerMap(map, RANGE_MAP_VERTICAL_UP, context, RangeMap.fromMap),
+        getObjectFromInnerMap(
+            map, RANGE_MAP_HORIZONTAL_INNER, context, RangeMap.fromMap),
+        getObjectFromInnerMap(
+            map, RANGE_MAP_HORIZONTAL_OUTER, context, RangeMap.fromMap),
+        getObjectFromInnerMap(
+            map, RANGE_MAP_VERTICAL_DOWN, context, RangeMap.fromMap),
+        getObjectFromInnerMap(
+            map, RANGE_MAP_VERTICAL_UP, context, RangeMap.fromMap),
         getExtensions(map, VrmcVrm, context),
         getExtras(map, context));
   }
@@ -87,9 +92,7 @@ class RangeMap extends GltfProperty {
   final double inputMaxValue;
   final double outputScale;
 
-  RangeMap._(
-      this.inputMaxValue,
-      this.outputScale,
+  RangeMap._(this.inputMaxValue, this.outputScale,
       Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
