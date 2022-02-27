@@ -14,7 +14,7 @@
  * # limitations under the License.
  */
 
-import * as v from './gltf_validator.dart.js';
+import * as v from './vrm_validator.dart.js';
 
 /**
  * Returns a version string.

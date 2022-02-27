@@ -127,7 +127,7 @@ Future<ValidationResult> _doValidate(List<File> files) async {
       reader = GltfJsonReader(_getFileStream(gltfFile), context);
       break;
     }
-    if (lowerCaseName.endsWith('.glb')) {
+    if (lowerCaseName.endsWith('.glb') || lowerCaseName.endsWith('.vrm')) {
       reader = GlbReader(_getFileStream(gltfFile), context);
       break;
     }
