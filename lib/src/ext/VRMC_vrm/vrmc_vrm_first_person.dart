@@ -39,22 +39,8 @@ class VrmcVrmFirstPerson extends GltfProperty {
       checkMembers(map, VRMC_VRM_FIRST_PERSON_MEMBERS, context);
     }
 
-    SafeList<MeshAnnotation> meshAnnotations;
-    final meshAnnotationMaps = getMapList(map, MESH_ANNOTATIONS, context);
-    if (meshAnnotationMaps != null) {
-      meshAnnotations = SafeList<MeshAnnotation>(meshAnnotationMaps.length, MESH_ANNOTATIONS);
-      context.path.add(MESH_ANNOTATIONS);
-      for (var i = 0; i < meshAnnotationMaps.length; i++) {
-        final meshAnnotationMap = meshAnnotationMaps[i];
-        context.path.add(i.toString());
-        meshAnnotations[i] = MeshAnnotation.fromMap(meshAnnotationMap, context);
-        context.path.removeLast();
-      }
-      context.path.removeLast();
-    }
-
     return VrmcVrmFirstPerson._(
-        meshAnnotations,
+        getObjectList(map, MESH_ANNOTATIONS, context, MeshAnnotation.fromMap),
         getExtensions(map, VrmcVrm, context),
         getExtras(map, context));
   }

@@ -218,6 +218,28 @@ T getObjectFromInnerMap<T>(Map<String, Object> map, String name,
   return null;
 }
 
+Map<String, T> getMapOfObjects<T>(Map<String, Object> map, String name,
+    Context context, FromMapFunction<T> fromMap,
+    {bool req = false }) {
+  final value = getMap(map, name, context, req: req);
+
+  if (value == null) {
+    return null;
+  }
+
+  context.path.add(name);
+  final mapOfObjects = <String, T>{};
+  for (final key in value.keys) {
+    final innerMap = getMap(value, key, context);
+    context.path.add(key);
+    mapOfObjects[key] = fromMap(innerMap, context);
+    context.path.removeLast();
+  }
+  context.path.removeLast();
+
+  return mapOfObjects;
+}
+
 List<int> getIndicesList(Map<String, Object> map, String name, Context context,
     {bool req = false}) {
   final value = _getGuarded(map, name, _kArray, context);
@@ -484,7 +506,8 @@ List<String> getStringList(
 }
 
 List<Map<String, Object>> getMapList(
-    Map<String, Object> map, String name, Context context) {
+    Map<String, Object> map, String name, Context context,
+    { bool req = true }) {
   final value = _getGuarded(map, name, _kArray, context);
   if (value is List<Object>) {
     if (value.isEmpty) {
@@ -505,12 +528,34 @@ List<Map<String, Object>> getMapList(
     }
     return value.cast();
   } else if (value == null) {
-    context.addIssue(SchemaError.undefinedProperty, args: [name]);
+    if (req) {
+      context.addIssue(SchemaError.undefinedProperty, args: [name]);
+    }
   } else {
     context
         .addIssue(SchemaError.typeMismatch, name: name, args: [value, _kArray]);
   }
   return null;
+}
+
+List<T> getObjectList<T>(Map<String, Object> map, String name, Context context,
+  FromMapFunction<T> fromMap, { bool req = false }) {
+
+  SafeList<T> objectList;
+  final objectMaps = getMapList(map, name, context, req: req);
+  if (objectMaps != null) {
+    objectList = SafeList<T>(objectMaps.length, name);
+    context.path.add(name);
+    for (var i = 0; i < objectMaps.length; i++) {
+      final objectMap = objectMaps[i];
+      context.path.add(i.toString());
+      objectList[i] = fromMap(objectMap, context);
+      context.path.removeLast();
+    }
+    context.path.removeLast();
+  }
+
+  return objectList;
 }
 
 String getName(Map<String, Object> map, Context context, {bool req = false}) =>
