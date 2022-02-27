@@ -1,22 +1,11 @@
-# glTF-Validator
+# vrm-validator
 
-<p align="center">
-<img src="web/logos/glTF_RGB_June16.svg" alt="" height="125"/>
-</p>
+Tool to validate [VRM](https://vrm.dev/en/) ([glTF](https://github.com/KhronosGroup/glTF) + VRM extensions) assets.
 
-[![Build Status](https://github.com/KhronosGroup/glTF-Validator/workflows/CI/badge.svg)](https://github.com/KhronosGroup/glTF-Validator/actions?query=workflow%3ACI)
-
-Tool to validate [glTF](https://github.com/KhronosGroup/glTF) assets.
-
-Validation is performed against [glTF 2.0](https://www.khronos.org/registry/glTF/specs/2.0/glTF-2.0.html) specification.
+This project is a fork of the official [glTF-validator](https://github.com/KhronosGroup/glTF-Validator), expanded to valdiate .vrm files.
+Validation is performed against [glTF 2.0](https://github.com/KhronosGroup/glTF/tree/master/specification/2.0) specification and [VRM 1.0-beta](https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_vrm-1.0-beta) specification.
 
 Validator writes a validation report (in JSON-format) with all found issues and asset stats.
-
-Live drag-n-drop tool: https://github.khronos.org/glTF-Validator
-
-NPM package: https://www.npmjs.com/package/gltf-validator
-
-NuGet package [Third-party contribution]: https://www.nuget.org/packages/GltfValidator/
 
 ## Implemented features
 
@@ -33,6 +22,7 @@ NuGet package [Third-party contribution]: https://www.nuget.org/packages/GltfVal
 - Images validation
   - Warning on non-power-of-two dimensions.
   - Warning on unsupported image features (like animations or custom color spaces).
+- VRM extension validation
 - Extensions validation
   - EXT_texture_webp
   - KHR_animation_pointer (partial)
@@ -52,19 +42,19 @@ NuGet package [Third-party contribution]: https://www.nuget.org/packages/GltfVal
   - KHR_materials_volume
   - KHR_mesh_quantization
   - KHR_texture_transform
+  - VRMC_vrm
 - [Full list of detectable issues](ISSUES.md).
 
 ## Usage
 
 You can use hosted [web front-end tool](https://github.khronos.org/glTF-Validator). It works completely in the browser without any server-side processing.
 
-### Command Line Tool Usage
-
+#### Command Line Tool Usage
 ```text
-Usage: gltf_validator [<options>] <input>
+Usage: vrm_validator [<options>] <input>
 
 Validation report will be written to `<asset_filename>.report.json`.
-If <input> is a directory, validation reports will be recursively created for each *.gltf or *.glb asset.
+If <input> is a directory, validation reports will be recursively created for each *.gltf, *.glb or *.vrm asset.
 
 Validation log will be printed to stderr.
 
