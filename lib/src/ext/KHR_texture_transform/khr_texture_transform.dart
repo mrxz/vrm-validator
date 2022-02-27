@@ -59,11 +59,13 @@ class KhrTextureTransform extends GltfProperty {
     // https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_vrm-1.0-beta#obsolete-properties-of-khr_texture_transform-with-vrm1
     // `rotation` and `texCoord` are not recommended for VRM
     if (rotation != 0.0) {
-      context.addIssue(SemanticError.vrm1TextureTransformRotation, args: [rotation]);
+      context.addIssue(SemanticError.vrm1TextureTransformRotation,
+          args: [rotation]);
     }
 
     if (texCoord != -1) {
-      context.addIssue(SemanticError.vrm1TextureTransformTexCoord, args: [texCoord]);
+      context.addIssue(SemanticError.vrm1TextureTransformTexCoord,
+          args: [texCoord]);
     }
 
     return KhrTextureTransform._(

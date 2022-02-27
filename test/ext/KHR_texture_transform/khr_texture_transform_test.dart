@@ -36,8 +36,8 @@ Future main() async {
 
       expect(textureTransform.offset, [0, 1]);
       expect(textureTransform.scale, [0.5, 0.5]);
-      expect(textureTransform.rotation, 1.57079632679);
-      expect(textureTransform.texCoord, 1);
+      expect(textureTransform.rotation, 0.0);
+      expect(textureTransform.texCoord, -1);
       expect(textureTransform.extensions, isEmpty);
     });
   });

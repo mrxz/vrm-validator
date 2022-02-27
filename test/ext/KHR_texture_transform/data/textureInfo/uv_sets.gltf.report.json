@@ -4,10 +4,22 @@
     "validatorVersion": "2.0.0-dev.3.10",
     "issues": {
         "numErrors": 1,
-        "numWarnings": 0,
+        "numWarnings": 2,
         "numInfos": 1,
         "numHints": 0,
         "messages": [
+            {
+                "code": "VRM1_TEXTURE_TRANSFORM_TEXCOORD",
+                "message": "TexCoord in KHR_texture_transform is set to 1, but should not be used",
+                "severity": 1,
+                "pointer": "/materials/0/normalTexture/extensions/KHR_texture_transform"
+            },
+            {
+                "code": "VRM1_TEXTURE_TRANSFORM_TEXCOORD",
+                "message": "TexCoord in KHR_texture_transform is set to 2, but should not be used",
+                "severity": 1,
+                "pointer": "/materials/0/emissiveTexture/extensions/KHR_texture_transform"
+            },
             {
                 "code": "MESH_PRIMITIVE_TOO_FEW_TEXCOORDS",
                 "message": "Material is incompatible with mesh primitive: Texture binding '/materials/0/emissiveTexture/extensions/KHR_texture_transform' needs 'TEXCOORD_2' attribute.",

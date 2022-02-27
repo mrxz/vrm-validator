@@ -222,7 +222,7 @@ T getObjectFromInnerMap<T>(Map<String, Object> map, String name,
 
 Map<String, T> getMapOfObjects<T>(Map<String, Object> map, String name,
     Context context, FromMapFunction<T> fromMap,
-    {bool req = false }) {
+    {bool req = false}) {
   final value = getMap(map, name, context, req: req);
 
   if (value == null) {
@@ -474,7 +474,8 @@ List<int> getGlIntList(Map<String, Object> map, String name, Context context,
 }
 
 List<String> getStringList(
-    Map<String, Object> map, String name, Context context, {bool req = false}) {
+    Map<String, Object> map, String name, Context context,
+    {bool req = false}) {
   final value = _getGuarded(map, name, _kArray, context);
   if (value is List<Object>) {
     if (value.isEmpty) {
@@ -514,7 +515,7 @@ List<String> getStringList(
 
 List<Map<String, Object>> getMapList(
     Map<String, Object> map, String name, Context context,
-    { bool req = true }) {
+    {bool req = true}) {
   final value = _getGuarded(map, name, _kArray, context);
   if (value is List<Object>) {
     if (value.isEmpty) {
@@ -546,8 +547,8 @@ List<Map<String, Object>> getMapList(
 }
 
 List<T> getObjectList<T>(Map<String, Object> map, String name, Context context,
-  FromMapFunction<T> fromMap, { bool req = false }) {
-
+    FromMapFunction<T> fromMap,
+    {bool req = false}) {
   SafeList<T> objectList;
   final objectMaps = getMapList(map, name, context, req: req);
   if (objectMaps != null) {

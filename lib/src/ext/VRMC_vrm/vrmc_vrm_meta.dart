@@ -33,7 +33,8 @@ const String AVATAR_PERMISSION = 'avatarPermission';
 const String ALLOW_EXCESSIVELY_VIOLENT_USAGE = 'allowExcessivelyViolentUsage';
 const String ALLOW_EXCESSIVELY_SEXUAL_USAGE = 'allowExcessivelySexualUsage';
 const String COMMERCIAL_USAGE = 'commercialUsage';
-const String ALLOW_POLITICAL_OR_RELIGIOUS_USAGE = 'allowPoliticalOrReligiousUsage';
+const String ALLOW_POLITICAL_OR_RELIGIOUS_USAGE =
+    'allowPoliticalOrReligiousUsage';
 const String ALLOW_ANTISOCIAL_OR_HATE_USAGE = 'allowAntisocialOrHateUsage';
 const String CREDIT_NOTATION = 'creditNotation';
 const String ALLOW_REDISTRIBUTION = 'allowRedistribution';
@@ -105,7 +106,8 @@ class VrmcVrmMeta extends GltfProperty {
       this.allowRedistribution,
       this.modification,
       this.otherLicenseUrl,
-      Map<String, Object> extensions, Object extras)
+      Map<String, Object> extensions,
+      Object extras)
       : super(extensions, extras);
 
   static VrmcVrmMeta fromMap(Map<String, Object> map, Context context) {

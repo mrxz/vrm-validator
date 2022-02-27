@@ -30,8 +30,7 @@ class VrmcVrmHumanoid extends GltfProperty {
   final HumanBones humanBones;
 
   VrmcVrmHumanoid._(
-      this.humanBones,
-      Map<String, Object> extensions, Object extras)
+      this.humanBones, Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
   static VrmcVrmHumanoid fromMap(Map<String, Object> map, Context context) {
@@ -40,7 +39,8 @@ class VrmcVrmHumanoid extends GltfProperty {
     }
 
     return VrmcVrmHumanoid._(
-        getObjectFromInnerMap(map, HUMAN_BONES, context, HumanBones.fromMap, req: true),
+        getObjectFromInnerMap(map, HUMAN_BONES, context, HumanBones.fromMap,
+            req: true),
         getExtensions(map, VrmcVrm, context),
         getExtras(map, context));
   }
@@ -230,61 +230,61 @@ class HumanBones {
   final HumanBone upperChest;
 
   HumanBones._(
-    this.chest,
-    this.head,
-    this.hips,
-    this.jaw,
-    this.leftEye,
-    this.leftFoot,
-    this.leftHand,
-    this.leftIndexDistal,
-    this.leftIndexIntermediate,
-    this.leftIndexProximal,
-    this.leftLittleDistal,
-    this.leftLittleIntermediate,
-    this.leftLittleProximal,
-    this.leftLowerArm,
-    this.leftLowerLeg,
-    this.leftMiddleDistal,
-    this.leftMiddleIntermediate,
-    this.leftMiddleProximal,
-    this.leftRingDistal,
-    this.leftRingIntermediate,
-    this.leftRingProximal,
-    this.leftShoulder,
-    this.leftThumbDistal,
-    this.leftThumbIntermediate,
-    this.leftThumbProximal,
-    this.leftToes,
-    this.leftUpperArm,
-    this.leftUpperLeg,
-    this.neck,
-    this.rightEye,
-    this.rightFoot,
-    this.rightHand,
-    this.rightIndexDistal,
-    this.rightIndexIntermediate,
-    this.rightIndexProximal,
-    this.rightLittleDistal,
-    this.rightLittleIntermediate,
-    this.rightLittleProximal,
-    this.rightLowerArm,
-    this.rightLowerLeg,
-    this.rightMiddleDistal,
-    this.rightMiddleIntermediate,
-    this.rightMiddleProximal,
-    this.rightRingDistal,
-    this.rightRingIntermediate,
-    this.rightRingProximal,
-    this.rightShoulder,
-    this.rightThumbDistal,
-    this.rightThumbIntermediate,
-    this.rightThumbProximal,
-    this.rightToes,
-    this.rightUpperArm,
-    this.rightUpperLeg,
-    this.spine,
-    this.upperChest);
+      this.chest,
+      this.head,
+      this.hips,
+      this.jaw,
+      this.leftEye,
+      this.leftFoot,
+      this.leftHand,
+      this.leftIndexDistal,
+      this.leftIndexIntermediate,
+      this.leftIndexProximal,
+      this.leftLittleDistal,
+      this.leftLittleIntermediate,
+      this.leftLittleProximal,
+      this.leftLowerArm,
+      this.leftLowerLeg,
+      this.leftMiddleDistal,
+      this.leftMiddleIntermediate,
+      this.leftMiddleProximal,
+      this.leftRingDistal,
+      this.leftRingIntermediate,
+      this.leftRingProximal,
+      this.leftShoulder,
+      this.leftThumbDistal,
+      this.leftThumbIntermediate,
+      this.leftThumbProximal,
+      this.leftToes,
+      this.leftUpperArm,
+      this.leftUpperLeg,
+      this.neck,
+      this.rightEye,
+      this.rightFoot,
+      this.rightHand,
+      this.rightIndexDistal,
+      this.rightIndexIntermediate,
+      this.rightIndexProximal,
+      this.rightLittleDistal,
+      this.rightLittleIntermediate,
+      this.rightLittleProximal,
+      this.rightLowerArm,
+      this.rightLowerLeg,
+      this.rightMiddleDistal,
+      this.rightMiddleIntermediate,
+      this.rightMiddleProximal,
+      this.rightRingDistal,
+      this.rightRingIntermediate,
+      this.rightRingProximal,
+      this.rightShoulder,
+      this.rightThumbDistal,
+      this.rightThumbIntermediate,
+      this.rightThumbProximal,
+      this.rightToes,
+      this.rightUpperArm,
+      this.rightUpperLeg,
+      this.spine,
+      this.upperChest);
 
   static HumanBones fromMap(Map<String, Object> map, Context context) {
     if (context.validate) {
@@ -297,33 +297,56 @@ class HumanBones {
         getObjectFromInnerMap(map, HIPS, context, HumanBone.fromMap, req: true),
         getObjectFromInnerMap(map, JAW, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, LEFT_EYE, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_FOOT, context, HumanBone.fromMap, req: true),
-        getObjectFromInnerMap(map, LEFT_HAND, context, HumanBone.fromMap, req: true),
-        getObjectFromInnerMap(map, LEFT_INDEX_DISTAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_INDEX_INTERMEDIATE, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_INDEX_PROXIMAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_LITTLE_DISTAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_LITTLE_INTERMEDIATE, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_LITTLE_PROXIMAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_LOWER_ARM, context, HumanBone.fromMap, req: true),
-        getObjectFromInnerMap(map, LEFT_LOWER_LEG, context, HumanBone.fromMap, req: true),
-        getObjectFromInnerMap(map, LEFT_MIDDLE_DISTAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_MIDDLE_INTERMEDIATE, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_MIDDLE_PROXIMAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_RING_DISTAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_RING_INTERMEDIATE, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_RING_PROXIMAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(map, LEFT_FOOT, context, HumanBone.fromMap,
+            req: true),
+        getObjectFromInnerMap(map, LEFT_HAND, context, HumanBone.fromMap,
+            req: true),
+        getObjectFromInnerMap(
+            map, LEFT_INDEX_DISTAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_INDEX_INTERMEDIATE, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_INDEX_PROXIMAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_LITTLE_DISTAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_LITTLE_INTERMEDIATE, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_LITTLE_PROXIMAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(map, LEFT_LOWER_ARM, context, HumanBone.fromMap,
+            req: true),
+        getObjectFromInnerMap(map, LEFT_LOWER_LEG, context, HumanBone.fromMap,
+            req: true),
+        getObjectFromInnerMap(
+            map, LEFT_MIDDLE_DISTAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_MIDDLE_INTERMEDIATE, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_MIDDLE_PROXIMAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_RING_DISTAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_RING_INTERMEDIATE, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_RING_PROXIMAL, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, LEFT_SHOULDER, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_THUMB_DISTAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_THUMB_INTERMEDIATE, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_THUMB_PROXIMAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_THUMB_DISTAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_THUMB_INTERMEDIATE, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_THUMB_PROXIMAL, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, LEFT_TOES, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, LEFT_UPPER_ARM, context, HumanBone.fromMap, req: true),
-        getObjectFromInnerMap(map, LEFT_UPPER_LEG, context, HumanBone.fromMap, req: true),
+        getObjectFromInnerMap(map, LEFT_UPPER_ARM, context, HumanBone.fromMap,
+            req: true),
+        getObjectFromInnerMap(map, LEFT_UPPER_LEG, context, HumanBone.fromMap,
+            req: true),
         getObjectFromInnerMap(map, NECK, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, RIGHT_EYE, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, RIGHT_FOOT, context, HumanBone.fromMap, req: true),
-        getObjectFromInnerMap(map, RIGHT_HAND, context, HumanBone.fromMap, req: true),
+        getObjectFromInnerMap(map, RIGHT_FOOT, context, HumanBone.fromMap,
+            req: true),
+        getObjectFromInnerMap(map, RIGHT_HAND, context, HumanBone.fromMap,
+            req: true),
         getObjectFromInnerMap(map, RIGHT_INDEX_DISTAL, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, RIGHT_INDEX_INTERMEDIATE, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, RIGHT_INDEX_PROXIMAL, context, HumanBone.fromMap),
@@ -642,9 +665,7 @@ class HumanBone extends GltfProperty {
 
   Node _node;
 
-  HumanBone._(
-      this._nodeIndex,
-      Map<String, Object> extensions, Object extras)
+  HumanBone._(this._nodeIndex, Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
   static HumanBone fromMap(Map<String, Object> map, Context context) {
@@ -652,10 +673,8 @@ class HumanBone extends GltfProperty {
       checkMembers(map, HUMAN_BONE_MEMBERS, context);
     }
 
-    return HumanBone._(
-        getIndex(map, NODE, context, req: true),
-        getExtensions(map, VrmcVrm, context),
-        getExtras(map, context));
+    return HumanBone._(getIndex(map, NODE, context, req: true),
+        getExtensions(map, VrmcVrm, context), getExtras(map, context));
   }
 
   @override
