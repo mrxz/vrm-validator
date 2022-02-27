@@ -1,20 +1,11 @@
-<p align="center">
-<img src="https://github.com/KhronosGroup/glTF/raw/master/specification/figures/gltf.png" alt=""/>
-</p>
+# vrm-validator
 
-# glTF-Validator
+Tool to validate [VRM](https://vrm.dev/en/) ([glTF](https://github.com/KhronosGroup/glTF) + VRM extensions) assets.
 
-[![Build Status](https://github.com/KhronosGroup/glTF-Validator/workflows/CI/badge.svg)](https://github.com/KhronosGroup/glTF-Validator/actions?query=workflow%3ACI)
-
-Tool to validate [glTF](https://github.com/KhronosGroup/glTF) assets.
-
-Validation is performed against [glTF 2.0](https://github.com/KhronosGroup/glTF/tree/master/specification/2.0) specification.
+This project is a fork of the official [glTF-validator](https://github.com/KhronosGroup/glTF-Validator), expanded to valdiate .vrm files.
+Validation is performed against [glTF 2.0](https://github.com/KhronosGroup/glTF/tree/master/specification/2.0) specification and [VRM 1.0-beta](https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_vrm-1.0-beta) specification.
 
 Validator writes a validation report (in JSON-format) with all found issues and asset stats.
-
-Live drag-n-drop tool: https://github.khronos.org/glTF-Validator
-
-NPM package: https://www.npmjs.com/package/gltf-validator
 
 ## Implemented features
 
@@ -31,6 +22,7 @@ NPM package: https://www.npmjs.com/package/gltf-validator
 - Images validation
   - Warning on non-power-of-two dimensions.
   - Warning on unsupported image features (like animations or custom color spaces).
+- VRM extension validation
 - Extensions validation
   - EXT_texture_webp
   - KHR_lights_punctual
@@ -45,6 +37,7 @@ NPM package: https://www.npmjs.com/package/gltf-validator
   - KHR_materials_volume
   - KHR_mesh_quantization
   - KHR_texture_transform
+  - VRMC_vrm
 - [Full list of detectable issues](ISSUES.md).
 
 ## Usage
@@ -53,10 +46,10 @@ You can use hosted [web front-end tool](https://github.khronos.org/glTF-Validato
 
 #### Command Line Tool Usage
 ```
-Usage: gltf_validator [<options>] <input>
+Usage: vrm_validator [<options>] <input>
 
 Validation report will be written to `<asset_filename>.report.json`.
-If <input> is a directory, validation reports will be recursively created for each *.gltf or *.glb asset.
+If <input> is a directory, validation reports will be recursively created for each *.gltf, *.glb or *.vrm asset.
 
 Validation log will be printed to stderr.
 
