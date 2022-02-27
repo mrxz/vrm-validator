@@ -19,6 +19,7 @@ library gltf.extensions.vrmc_vrm;
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_first_person.dart';
 import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_humanoid.dart';
+import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_look_at.dart';
 import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_meta.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
@@ -45,11 +46,13 @@ class VrmcVrm extends GltfProperty {
   final VrmcVrmMeta meta;
   final VrmcVrmHumanoid humanoid;
   final VrmcVrmFirstPerson firstPerson;
+  final VrmcVrmLookAt lookAt;
 
   VrmcVrm._(this.specVersion,
       this.meta,
       this.humanoid,
       this.firstPerson,
+      this.lookAt,
       Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
@@ -66,11 +69,14 @@ class VrmcVrm extends GltfProperty {
 
     final firstPerson = getObjectFromInnerMap(map, FIRST_PERSON, context, VrmcVrmFirstPerson.fromMap);
 
+    final lookAt = getObjectFromInnerMap(map, LOOK_AT, context, VrmcVrmLookAt.fromMap);
+
     return VrmcVrm._(
         specVersion,
         meta,
         humanoid,
         firstPerson,
+        lookAt,
         getExtensions(map, VrmcVrm, context),
         getExtras(map, context));
   }
