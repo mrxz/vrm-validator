@@ -373,281 +373,77 @@ class HumanBones {
   }
 
   void link(Gltf gltf, Context context) {
-    if (chest != null) {
-      context.path.add(CHEST);
-      chest.link(gltf, context);
-      context.path.removeLast();
+    final bones = <int, String>{};
+    void linkBone(String name, HumanBone bone) {
+      if (bone != null) {
+        context.path.add(name);
+        bone.link(gltf, context);
+        if (bones.containsKey(bone._nodeIndex)) {
+          context.addIssue(SemanticError.vrm1BoneNotUnique,
+              args: [name, bones[bone._nodeIndex], bone._nodeIndex]);
+        } else {
+          bones[bone._nodeIndex] = name;
+        }
+        context.path.removeLast();
+      }
     }
-    if (head != null) {
-      context.path.add(HEAD);
-      head.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (hips != null) {
-      context.path.add(HIPS);
-      hips.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (jaw != null) {
-      context.path.add(JAW);
-      jaw.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftEye != null) {
-      context.path.add(LEFT_EYE);
-      leftEye.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftFoot != null) {
-      context.path.add(LEFT_FOOT);
-      leftFoot.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftHand != null) {
-      context.path.add(LEFT_HAND);
-      leftHand.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftIndexDistal != null) {
-      context.path.add(LEFT_INDEX_DISTAL);
-      leftIndexDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftIndexIntermediate != null) {
-      context.path.add(LEFT_INDEX_INTERMEDIATE);
-      leftIndexIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftIndexProximal != null) {
-      context.path.add(LEFT_INDEX_PROXIMAL);
-      leftIndexProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftLittleDistal != null) {
-      context.path.add(LEFT_LITTLE_DISTAL);
-      leftLittleDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftLittleIntermediate != null) {
-      context.path.add(LEFT_LITTLE_INTERMEDIATE);
-      leftLittleIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftLittleProximal != null) {
-      context.path.add(LEFT_LITTLE_PROXIMAL);
-      leftLittleProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftLowerArm != null) {
-      context.path.add(LEFT_LOWER_ARM);
-      leftLowerArm.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftLowerLeg != null) {
-      context.path.add(LEFT_LOWER_LEG);
-      leftLowerLeg.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftMiddleDistal != null) {
-      context.path.add(LEFT_MIDDLE_DISTAL);
-      leftMiddleDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftMiddleIntermediate != null) {
-      context.path.add(LEFT_MIDDLE_INTERMEDIATE);
-      leftMiddleIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftMiddleProximal != null) {
-      context.path.add(LEFT_MIDDLE_PROXIMAL);
-      leftMiddleProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftRingDistal != null) {
-      context.path.add(LEFT_RING_DISTAL);
-      leftRingDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftRingIntermediate != null) {
-      context.path.add(LEFT_RING_INTERMEDIATE);
-      leftRingIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftRingProximal != null) {
-      context.path.add(LEFT_RING_PROXIMAL);
-      leftRingProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftShoulder != null) {
-      context.path.add(LEFT_SHOULDER);
-      leftShoulder.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftThumbDistal != null) {
-      context.path.add(LEFT_THUMB_DISTAL);
-      leftThumbDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftThumbIntermediate != null) {
-      context.path.add(LEFT_THUMB_INTERMEDIATE);
-      leftThumbIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftThumbProximal != null) {
-      context.path.add(LEFT_THUMB_PROXIMAL);
-      leftThumbProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftToes != null) {
-      context.path.add(LEFT_TOES);
-      leftToes.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftUpperArm != null) {
-      context.path.add(LEFT_UPPER_ARM);
-      leftUpperArm.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (leftUpperLeg != null) {
-      context.path.add(LEFT_UPPER_LEG);
-      leftUpperLeg.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (neck != null) {
-      context.path.add(NECK);
-      neck.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightEye != null) {
-      context.path.add(RIGHT_EYE);
-      rightEye.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightFoot != null) {
-      context.path.add(RIGHT_FOOT);
-      rightFoot.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightHand != null) {
-      context.path.add(RIGHT_HAND);
-      rightHand.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightIndexDistal != null) {
-      context.path.add(RIGHT_INDEX_DISTAL);
-      rightIndexDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightIndexIntermediate != null) {
-      context.path.add(RIGHT_INDEX_INTERMEDIATE);
-      rightIndexIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightIndexProximal != null) {
-      context.path.add(RIGHT_INDEX_PROXIMAL);
-      rightIndexProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightLittleDistal != null) {
-      context.path.add(RIGHT_LITTLE_DISTAL);
-      rightLittleDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightLittleIntermediate != null) {
-      context.path.add(RIGHT_LITTLE_INTERMEDIATE);
-      rightLittleIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightLittleProximal != null) {
-      context.path.add(RIGHT_LITTLE_PROXIMAL);
-      rightLittleProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightLowerArm != null) {
-      context.path.add(RIGHT_LOWER_ARM);
-      rightLowerArm.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightLowerLeg != null) {
-      context.path.add(RIGHT_LOWER_LEG);
-      rightLowerLeg.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightMiddleDistal != null) {
-      context.path.add(RIGHT_MIDDLE_DISTAL);
-      rightMiddleDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightMiddleIntermediate != null) {
-      context.path.add(RIGHT_MIDDLE_INTERMEDIATE);
-      rightMiddleIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightMiddleProximal != null) {
-      context.path.add(RIGHT_MIDDLE_PROXIMAL);
-      rightMiddleProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightRingDistal != null) {
-      context.path.add(RIGHT_RING_DISTAL);
-      rightRingDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightRingIntermediate != null) {
-      context.path.add(RIGHT_RING_INTERMEDIATE);
-      rightRingIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightRingProximal != null) {
-      context.path.add(RIGHT_RING_PROXIMAL);
-      rightRingProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightShoulder != null) {
-      context.path.add(RIGHT_SHOULDER);
-      rightShoulder.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightThumbDistal != null) {
-      context.path.add(RIGHT_THUMB_DISTAL);
-      rightThumbDistal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightThumbIntermediate != null) {
-      context.path.add(RIGHT_THUMB_INTERMEDIATE);
-      rightThumbIntermediate.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightThumbProximal != null) {
-      context.path.add(RIGHT_THUMB_PROXIMAL);
-      rightThumbProximal.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightToes != null) {
-      context.path.add(RIGHT_TOES);
-      rightToes.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightUpperArm != null) {
-      context.path.add(RIGHT_UPPER_ARM);
-      rightUpperArm.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (rightUpperLeg != null) {
-      context.path.add(RIGHT_UPPER_LEG);
-      rightUpperLeg.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (spine != null) {
-      context.path.add(SPINE);
-      spine.link(gltf, context);
-      context.path.removeLast();
-    }
-    if (upperChest != null) {
-      context.path.add(UPPER_CHEST);
-      upperChest.link(gltf, context);
-      context.path.removeLast();
-    }
+
+    linkBone(CHEST, chest);
+    linkBone(CHEST, chest);
+    linkBone(HEAD, head);
+    linkBone(HIPS, hips);
+    linkBone(JAW, jaw);
+    linkBone(LEFT_EYE, leftEye);
+    linkBone(LEFT_FOOT, leftFoot);
+    linkBone(LEFT_HAND, leftHand);
+    linkBone(LEFT_INDEX_DISTAL, leftIndexDistal);
+    linkBone(LEFT_INDEX_INTERMEDIATE, leftIndexIntermediate);
+    linkBone(LEFT_INDEX_PROXIMAL, leftIndexProximal);
+    linkBone(LEFT_LITTLE_DISTAL, leftLittleDistal);
+    linkBone(LEFT_LITTLE_INTERMEDIATE, leftLittleIntermediate);
+    linkBone(LEFT_LITTLE_PROXIMAL, leftLittleProximal);
+    linkBone(LEFT_LOWER_ARM, leftLowerArm);
+    linkBone(LEFT_LOWER_LEG, leftLowerLeg);
+    linkBone(LEFT_MIDDLE_DISTAL, leftMiddleDistal);
+    linkBone(LEFT_MIDDLE_INTERMEDIATE, leftMiddleIntermediate);
+    linkBone(LEFT_MIDDLE_PROXIMAL, leftMiddleProximal);
+    linkBone(LEFT_RING_DISTAL, leftRingDistal);
+    linkBone(LEFT_RING_INTERMEDIATE, leftRingIntermediate);
+    linkBone(LEFT_RING_PROXIMAL, leftRingProximal);
+    linkBone(LEFT_SHOULDER, leftShoulder);
+    linkBone(LEFT_THUMB_DISTAL, leftThumbDistal);
+    linkBone(LEFT_THUMB_INTERMEDIATE, leftThumbIntermediate);
+    linkBone(LEFT_THUMB_PROXIMAL, leftThumbProximal);
+    linkBone(LEFT_TOES, leftToes);
+    linkBone(LEFT_UPPER_ARM, leftUpperArm);
+    linkBone(LEFT_UPPER_LEG, leftUpperLeg);
+    linkBone(NECK, neck);
+    linkBone(RIGHT_EYE, rightEye);
+    linkBone(RIGHT_FOOT, rightFoot);
+    linkBone(RIGHT_HAND, rightHand);
+    linkBone(RIGHT_INDEX_DISTAL, rightIndexDistal);
+    linkBone(RIGHT_INDEX_INTERMEDIATE, rightIndexIntermediate);
+    linkBone(RIGHT_INDEX_PROXIMAL, rightIndexProximal);
+    linkBone(RIGHT_LITTLE_DISTAL, rightLittleDistal);
+    linkBone(RIGHT_LITTLE_INTERMEDIATE, rightLittleIntermediate);
+    linkBone(RIGHT_LITTLE_PROXIMAL, rightLittleProximal);
+    linkBone(RIGHT_LOWER_ARM, rightLowerArm);
+    linkBone(RIGHT_LOWER_LEG, rightLowerLeg);
+    linkBone(RIGHT_MIDDLE_DISTAL, rightMiddleDistal);
+    linkBone(RIGHT_MIDDLE_INTERMEDIATE, rightMiddleIntermediate);
+    linkBone(RIGHT_MIDDLE_PROXIMAL, rightMiddleProximal);
+    linkBone(RIGHT_RING_DISTAL, rightRingDistal);
+    linkBone(RIGHT_RING_INTERMEDIATE, rightRingIntermediate);
+    linkBone(RIGHT_RING_PROXIMAL, rightRingProximal);
+    linkBone(RIGHT_SHOULDER, rightShoulder);
+    linkBone(RIGHT_THUMB_DISTAL, rightThumbDistal);
+    linkBone(RIGHT_THUMB_INTERMEDIATE, rightThumbIntermediate);
+    linkBone(RIGHT_THUMB_PROXIMAL, rightThumbProximal);
+    linkBone(RIGHT_TOES, rightToes);
+    linkBone(RIGHT_UPPER_ARM, rightUpperArm);
+    linkBone(RIGHT_UPPER_LEG, rightUpperLeg);
+    linkBone(SPINE, spine);
+    linkBone(UPPER_CHEST, upperChest);
   }
 }
 

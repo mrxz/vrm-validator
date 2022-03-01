@@ -581,6 +581,12 @@ class SemanticError extends IssueType {
               'Thumbnail resolution (${args[0]} x ${args[1]}) is not the recommended 1024 x 1024.',
           Severity.Warning);
 
+  static final SemanticError vrm1BoneNotUnique = SemanticError._(
+      'VRM1_BONE_NOT_UNIQUE',
+      (args) =>
+          'Bones for "${args[0]}" and "${args[1]}" are not unique, both use bone ${args[2]}.',
+      Severity.Error);
+
   SemanticError._(String type, ErrorFunction message,
       [Severity severity = Severity.Error])
       : super(type, message, severity);
