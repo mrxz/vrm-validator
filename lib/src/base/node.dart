@@ -1,5 +1,6 @@
 /*
  * # Copyright (c) 2016-2019 The Khronos Group Inc.
+ * # Copyright (c) 2022 Noeri Huisman
  * #
  * # Licensed under the Apache License, Version 2.0 (the "License");
  * # you may not use this file except in compliance with the License.
@@ -38,6 +39,7 @@ class Node extends GltfChildOfRootProperty {
   Skin _skin;
 
   bool isJoint = false;
+  bool isCollider = false;
 
   Node._(
       this._cameraIndex,

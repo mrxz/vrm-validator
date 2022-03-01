@@ -65,6 +65,17 @@ class VrmcSpringBone extends GltfProperty {
 
   @override
   void link(Gltf gltf, Context context) {
+    if (colliders != null) {
+      context.path.add(COLLIDERS);
+      for (var i = 0; i < colliders.length; i++) {
+        final collider = colliders[i];
+        context.path.add(i.toString());
+        collider.link(gltf, context);
+        context.path.removeLast();
+      }
+      context.path.removeLast();
+    }
+
     if (colliderGroups != null) {
       context.path.add(COLLIDER_GROUPS);
       for (var i = 0; i < colliderGroups.length; i++) {
@@ -74,6 +85,16 @@ class VrmcSpringBone extends GltfProperty {
         context.path.removeLast();
       }
       context.path.removeLast();
+    }
+
+    if (springs != null) {
+      context.path.add(SPRINGS);
+      for (var i = 0; i < springs.length; i++) {
+        final spring = springs[i];
+        context.path.add(i.toString());
+        spring.link(gltf, context);
+        context.path.removeLast();
+      }
     }
   }
 }
