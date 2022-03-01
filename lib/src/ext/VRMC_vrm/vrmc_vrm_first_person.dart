@@ -40,7 +40,7 @@ class VrmcVrmFirstPerson extends GltfProperty {
 
     return VrmcVrmFirstPerson._(
         getObjectList(map, MESH_ANNOTATIONS, context, MeshAnnotation.fromMap),
-        getExtensions(map, VrmcVrm, context),
+        getExtensions(map, VrmcVrmFirstPerson, context),
         getExtras(map, context));
   }
 

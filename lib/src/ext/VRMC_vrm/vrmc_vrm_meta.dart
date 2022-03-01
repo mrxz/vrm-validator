@@ -135,7 +135,7 @@ class VrmcVrmMeta extends GltfProperty {
         getBool(map, ALLOW_REDISTRIBUTION, context),
         getString(map, MODIFICATION, context),
         getString(map, OTHER_LICENSE_URL, context),
-        getExtensions(map, VrmcVrm, context),
+        getExtensions(map, VrmcVrmMeta, context),
         getExtras(map, context));
   }
 
