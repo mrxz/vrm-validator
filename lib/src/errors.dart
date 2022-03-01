@@ -559,14 +559,27 @@ class SemanticError extends IssueType {
   static final SemanticError vrm1TextureTransformRotation = SemanticError._(
       'VRM1_TEXTURE_TRANSFORM_ROTATION',
       (args) =>
-          'Rotation of texture in KHR_texture_transform is set to ${args[0]}, but should not be used or set to 0.0',
+          'Rotation of texture in KHR_texture_transform is set to ${args[0]}, but should not be used or set to 0.0.',
       Severity.Warning);
 
   static final SemanticError vrm1TextureTransformTexCoord = SemanticError._(
       'VRM1_TEXTURE_TRANSFORM_TEXCOORD',
       (args) =>
-          'TexCoord in KHR_texture_transform is set to ${args[0]}, but should not be used',
+          'TexCoord in KHR_texture_transform is set to ${args[0]}, but should not be used.',
       Severity.Warning);
+
+  static final SemanticError vrm1InvalidThumbnailImageMimeType = SemanticError._(
+      'VRM1_INVALID_THUMBNAIL_IMAGE_MIME_TYPE',
+      (args) =>
+          'Invalid thumbnail image mime type (${args[0]}), only jpg or png are allowed.',
+      Severity.Error);
+
+  static final SemanticError vrm1NonRecommendedThumbnailResolution =
+      SemanticError._(
+          'VRM1_NON_RECOMMENDED_THUMBNAIL_RESOLUTION',
+          (args) =>
+              'Thumbnail resolution (${args[0]} x ${args[1]}) is not the recommended 1024 x 1024.',
+          Severity.Warning);
 
   SemanticError._(String type, ErrorFunction message,
       [Severity severity = Severity.Error])
