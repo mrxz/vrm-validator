@@ -32,6 +32,7 @@ import 'package:gltf/src/ext/KHR_materials_variants/KHR_materials_variants.dart'
 import 'package:gltf/src/ext/KHR_materials_volume/khr_materials_volume.dart';
 import 'package:gltf/src/ext/KHR_mesh_quantization/khr_mesh_quantization.dart';
 import 'package:gltf/src/ext/KHR_texture_transform/khr_texture_transform.dart';
+import 'package:gltf/src/ext/VRMC_materials_mtoon/vrmc_materials_mtoon.dart';
 import 'package:gltf/src/ext/VRMC_springBone/vrmc_spring_bone.dart';
 import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm.dart';
 import 'package:meta/meta.dart';
@@ -50,6 +51,8 @@ export 'package:gltf/src/ext/KHR_materials_variants/KHR_materials_variants.dart'
 export 'package:gltf/src/ext/KHR_materials_volume/khr_materials_volume.dart';
 export 'package:gltf/src/ext/KHR_mesh_quantization/khr_mesh_quantization.dart';
 export 'package:gltf/src/ext/KHR_texture_transform/khr_texture_transform.dart';
+export 'package:gltf/src/ext/VRMC_materials_mtoon/vrmc_materials_mtoon.dart'
+    hide SPEC_VERSION;
 export 'package:gltf/src/ext/VRMC_springBone/vrmc_spring_bone.dart'
     hide SPEC_VERSION;
 export 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm.dart';
@@ -112,6 +115,7 @@ const List<Extension> kDefaultExtensions = <Extension>[
   khrMaterialsVolumeExtension,
   khrMeshQuantizationExtension,
   khrTextureTransformExtension,
+  vrmcMaterialMtoon,
   vrmcSpringBone,
   vrmcVrm,
 ];
