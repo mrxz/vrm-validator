@@ -551,8 +551,8 @@ List<Map<String, Object>> getMapList(
   return null;
 }
 
-List<T> getObjectList<T>(Map<String, Object> map, String name, Context context,
-    FromMapFunction<T> fromMap,
+SafeList<T> getObjectList<T>(Map<String, Object> map, String name,
+    Context context, FromMapFunction<T> fromMap,
     {bool req = false}) {
   SafeList<T> objectList;
   final objectMaps = getMapList(map, name, context, req: req);
@@ -672,30 +672,35 @@ void checkMembers(
 
 typedef _CheckKeyFunction = void Function(String key);
 
-void resolveNodeList(List<int> sourceList, List<Node> targetList,
-    SafeList<Node> nodes, String name, Context context,
-    [void Function(Node element, int nodeIndex, int index) handleNode]) {
+void resolveUsableList<T extends Usable>(List<int> sourceList,
+    List<T> targetList, SafeList<T> elements, String name, Context context,
+    [void Function(T element, int elementIndex, int index) handleElement]) {
   assert(sourceList != null);
   context.path.add(name);
   for (var i = 0; i < sourceList.length; i++) {
-    final nodeIndex = sourceList[i];
-    if (nodeIndex == -1) {
+    final elementIndex = sourceList[i];
+    if (elementIndex == -1) {
       continue;
     }
-    final node = nodes[nodeIndex];
-    if (node != null) {
-      node.markAsUsed();
-      targetList[i] = node;
-      if (handleNode != null) {
-        handleNode(node, nodeIndex, i);
+    final element = elements[elementIndex];
+    if (element != null) {
+      element.markAsUsed();
+      targetList[i] = element;
+      if (handleElement != null) {
+        handleElement(element, elementIndex, i);
       }
     } else {
-      context
-          .addIssue(LinkError.unresolvedReference, index: i, args: [nodeIndex]);
+      context.addIssue(LinkError.unresolvedReference,
+          index: i, args: [elementIndex]);
     }
   }
   context.path.removeLast();
 }
+
+void resolveNodeList(List<int> sourceList, List<Node> targetList,
+        SafeList<Node> nodes, String name, Context context,
+        [void Function(Node element, int nodeIndex, int index) handleNode]) =>
+    resolveUsableList(sourceList, targetList, nodes, name, context, handleNode);
 
 /// Adds a [value] to a [map] if that [value] isn't `null`.
 void addToMapIfNotNull(Map<String, Object> map, String key, Object value) {

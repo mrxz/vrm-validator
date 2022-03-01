@@ -38,8 +38,8 @@ const List<String> VRMC_SPRING_BONE_MEMBERS = <String>[
 
 class VrmcSpringBone extends GltfProperty {
   final String specVersion;
-  final List<Collider> colliders;
-  final List<ColliderGroup> colliderGroups;
+  final SafeList<Collider> colliders;
+  final SafeList<ColliderGroup> colliderGroups;
   final List<Spring> springs;
 
   VrmcSpringBone._(this.specVersion, this.colliders, this.colliderGroups,
@@ -67,6 +67,8 @@ class VrmcSpringBone extends GltfProperty {
   void link(Gltf gltf, Context context) {
     if (colliders != null) {
       context.path.add(COLLIDERS);
+      context.extensionCollections[colliders] =
+          context.path.toList(growable: false);
       for (var i = 0; i < colliders.length; i++) {
         final collider = colliders[i];
         context.path.add(i.toString());
@@ -78,6 +80,8 @@ class VrmcSpringBone extends GltfProperty {
 
     if (colliderGroups != null) {
       context.path.add(COLLIDER_GROUPS);
+      context.extensionCollections[colliderGroups] =
+          context.path.toList(growable: false);
       for (var i = 0; i < colliderGroups.length; i++) {
         final colliderGroup = colliderGroups[i];
         context.path.add(i.toString());

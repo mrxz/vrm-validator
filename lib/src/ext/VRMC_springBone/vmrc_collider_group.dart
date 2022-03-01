@@ -17,6 +17,7 @@
 library gltf.extensions.vrmc_vrm;
 
 import 'package:gltf/src/base/gltf_property.dart';
+import 'package:gltf/src/ext/VRMC_springBone/vrmc_collider.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.colliderGroup.schema.json
@@ -31,6 +32,8 @@ const List<String> COLLIDER_GROUP_MEMBERS = <String>[
 class ColliderGroup extends GltfProperty {
   final String name;
   final List<int> _colliderIndices;
+
+  List<Collider> _colliders;
 
   ColliderGroup._(this.name, this._colliderIndices,
       Map<String, Object> extensions, Object extras)
@@ -51,8 +54,11 @@ class ColliderGroup extends GltfProperty {
   @override
   void link(Gltf gltf, Context context) {
     final springBoneExtension = gltf.extensions[VRMC_SPRING_BONE];
-    if (springBoneExtension is VrmcSpringBone) {
-      // TODO: Mark colliders as used
+    if (_colliderIndices != null) {
+      _colliders = List<Collider>.filled(_colliderIndices.length, null);
+
+      resolveUsableList(_colliderIndices, _colliders,
+          (springBoneExtension as VrmcSpringBone).colliders, name, context);
     }
   }
 }
