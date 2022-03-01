@@ -63,7 +63,7 @@ class VrmcVrmLookAt extends GltfProperty {
     return VrmcVrmLookAt._(
         getFloatList(map, OFFSET_FROM_HEAD_BONE, context,
             lengthsList: const [3]),
-        getString(map, TYPE, context),
+        getString(map, TYPE, context, list: const ['bone', 'expression']),
         getObjectFromInnerMap(
             map, RANGE_MAP_HORIZONTAL_INNER, context, RangeMap.fromMap),
         getObjectFromInnerMap(

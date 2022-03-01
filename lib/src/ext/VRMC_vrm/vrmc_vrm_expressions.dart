@@ -40,9 +40,33 @@ class VrmcVrmExpressions extends GltfProperty {
       checkMembers(map, VRMC_VRM_EXPRESSIONS_MEMBERS, context);
     }
 
+    const expressionPresetNames = [
+      'aa',
+      'angry',
+      'blink',
+      'blinkLeft',
+      'blinkRight',
+      'ee',
+      'happy',
+      'ih',
+      'lookDown',
+      'lookLeft',
+      'lookRight',
+      'lookUp',
+      'neutral',
+      'oh',
+      'ou',
+      'relaxed',
+      'sad',
+      'surprised',
+    ];
+    final preset = getMapOfObjects(map, PRESET, context, Expression.fromMap,
+        list: expressionPresetNames);
+    final custom = getMapOfObjects(map, CUSTOM, context, Expression.fromMap);
+
     return VrmcVrmExpressions._(
-        getMapOfObjects(map, PRESET, context, Expression.fromMap),
-        getMapOfObjects(map, CUSTOM, context, Expression.fromMap),
+        preset,
+        custom,
         getExtensions(map, VrmcVrmExpressions, context),
         getExtras(map, context));
   }
@@ -122,6 +146,7 @@ class Expression extends GltfProperty {
       checkMembers(map, EXPRESSION_MEMBERS, context);
     }
 
+    const overrideTypes = ['none', 'block', 'blend'];
     return Expression._(
         getObjectList(
             map, MORPH_TARGET_BINDS, context, MorphTargetBind.fromMap),
@@ -130,9 +155,12 @@ class Expression extends GltfProperty {
         getObjectList(map, TEXTURE_TRANSFORM_BINDS, context,
             TextureTransformBind.fromMap),
         getBool(map, IS_BINARY, context),
-        getString(map, OVERRIDE_BLINK, context, def: 'none'),
-        getString(map, OVERRIDE_LOOK_AT, context, def: 'none'),
-        getString(map, OVERRIDE_MOUTH, context, def: 'none'),
+        getString(map, OVERRIDE_BLINK, context,
+            def: 'none', list: overrideTypes),
+        getString(map, OVERRIDE_LOOK_AT, context,
+            def: 'none', list: overrideTypes),
+        getString(map, OVERRIDE_MOUTH, context,
+            def: 'none', list: overrideTypes),
         getExtensions(map, Expression, context),
         getExtras(map, context));
   }
