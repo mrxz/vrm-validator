@@ -17,6 +17,7 @@
 library gltf.extensions.vrmc_vrm;
 
 import 'package:gltf/src/base/gltf_property.dart';
+import 'package:gltf/src/ext/VRMC_springBone/vmrc_collider_group.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.spring.schema.json
@@ -34,6 +35,8 @@ class Spring extends GltfProperty {
   final String name;
   final List<Joint> joints;
   final List<int> _colliderGroupIndices;
+
+  List<ColliderGroup> _colliderGroups;
 
   Spring._(this.name, this.joints, this._colliderGroupIndices,
       Map<String, Object> extensions, Object extras)
@@ -63,6 +66,19 @@ class Spring extends GltfProperty {
         context.path.removeLast();
       }
       context.path.removeLast();
+    }
+
+    final springBoneExtension = gltf.extensions[VRMC_SPRING_BONE];
+    if (_colliderGroupIndices != null) {
+      _colliderGroups =
+          List<ColliderGroup>.filled(_colliderGroupIndices.length, null);
+
+      resolveUsableList(
+          _colliderGroupIndices,
+          _colliderGroups,
+          (springBoneExtension as VrmcSpringBone).colliderGroups,
+          name,
+          context);
     }
   }
 }
