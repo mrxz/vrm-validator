@@ -88,14 +88,31 @@ int getUint(Map<String, Object> map, String name, Context context,
   assert(max == -1 || max >= min);
   assert(list == null || list.every((v) => v >= 0));
   final value = _tryFixInt(_getGuarded(map, name, _kInteger, context));
+  if (value == null) {
+    if (def == null) {
+      return -1;
+    }
+    return def;
+  }
+  return value;
+}
+
+int getInt(Map<String, Object> map, String name, Context context,
+    {bool req = false, int min, int max, int def, Iterable<int> list}) {
+  assert(max == null || max >= min);
+  assert(def == null || (def >= min && def <= max));
+  assert(list == null || list.every((v) => v != null));
+  final value = _getGuarded(map, name, _kInteger, context);
   if (value is int) {
     if (list != null) {
       if (!checkEnum<int>(name, value, list, context)) {
-        return -1;
+        // ignore: avoid_returning_null
+        return null;
       }
-    } else if ((value < min) || (max != -1 && value > max)) {
+    } else if ((min != null && value < min) || (max != null && value > max)) {
       context.addIssue(SchemaError.valueNotInRange, name: name, args: [value]);
-      return -1;
+      // ignore: avoid_returning_null
+      return null;
     }
     return value;
   } else if (value == null) {
@@ -107,7 +124,8 @@ int getUint(Map<String, Object> map, String name, Context context,
     context.addIssue(SchemaError.typeMismatch,
         name: name, args: [value, _kInteger]);
   }
-  return -1;
+  // ignore: avoid_returning_null
+  return null;
 }
 
 double getFloat(Map<String, Object> map, String name, Context context,
