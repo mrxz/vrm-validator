@@ -17,7 +17,7 @@
 library gltf.extensions.vrmc_vrm;
 
 import 'package:gltf/src/base/gltf_property.dart';
-import 'package:gltf/src/ext/VRMC_springBone/vmrc_collider_group.dart';
+import 'package:gltf/src/ext/VRMC_springBone/vrmc_collider_group.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.spring.schema.json
