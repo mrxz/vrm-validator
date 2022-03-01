@@ -10,13 +10,13 @@
         "messages": [
             {
                 "code": "VRM1_TEXTURE_TRANSFORM_TEXCOORD",
-                "message": "TexCoord in KHR_texture_transform is set to 1, but should not be used",
+                "message": "TexCoord in KHR_texture_transform is set to 1, but should not be used.",
                 "severity": 1,
                 "pointer": "/materials/0/normalTexture/extensions/KHR_texture_transform"
             },
             {
                 "code": "VRM1_TEXTURE_TRANSFORM_TEXCOORD",
-                "message": "TexCoord in KHR_texture_transform is set to 2, but should not be used",
+                "message": "TexCoord in KHR_texture_transform is set to 2, but should not be used.",
                 "severity": 1,
                 "pointer": "/materials/0/emissiveTexture/extensions/KHR_texture_transform"
             },
