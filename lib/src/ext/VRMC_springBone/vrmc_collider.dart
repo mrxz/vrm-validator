@@ -23,7 +23,10 @@ import 'package:gltf/src/ext/extensions.dart';
 const String NODE = 'node';
 const String SHAPE = 'shape';
 
-const List<String> COLLIDER_MEMBERS = <String>[NODE, SHAPE];
+const List<String> COLLIDER_MEMBERS = <String>[
+  NODE,
+  SHAPE,
+];
 
 class Collider extends GltfProperty {
   final int _nodeIndex;
