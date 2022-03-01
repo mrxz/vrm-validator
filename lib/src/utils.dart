@@ -78,7 +78,6 @@ bool getBool(Map<String, Object> map, String name, Context context) {
 int getInt(Map<String, Object> map, String name, Context context,
     {bool req = false, int min, int max, int def, Iterable<int> list}) {
   assert(max == null || max >= min);
-  assert(def == null || (def >= min && def <= max));
   assert(list == null || list.every((v) => v != null));
   final value = _getGuarded(map, name, _kInteger, context);
   if (value is int) {
@@ -109,7 +108,7 @@ int getInt(Map<String, Object> map, String name, Context context,
 int getUint(Map<String, Object> map, String name, Context context,
     {bool req = false, int min = 0, int max, int def, Iterable<int> list}) {
   assert(min != null && min >= 0);
-  assert(max == -1 || max >= min);
+  assert(max == null || max >= min);
   assert(list == null || list.every((v) => v >= 0));
   final value =
       getInt(map, name, context, req: req, min: min, max: max, def: def);
@@ -614,7 +613,12 @@ Map<String, Object> getExtensions(
     }
 
     if (extensionMaps.length > 1 && extensionDescriptor.standalone) {
-      context.addIssue(SemanticError.multipleExtensions, name: extension);
+      // FIXME: Add generic handling for these exceptions
+      if (!(extension == 'KHR_materials_unlit' &&
+          extensionMaps.length == 2 &&
+          extensionMaps.keys.contains('VRMC_materials_mtoon'))) {
+        context.addIssue(SemanticError.multipleExtensions, name: extension);
+      }
     }
 
     if (extensionMap != null) {
