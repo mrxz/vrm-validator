@@ -1,5 +1,6 @@
 /*
  * # Copyright (c) 2016-2019 The Khronos Group Inc.
+ * # Copyright (c) 2022 Noeri Huisman
  * #
  * # Licensed under the Apache License, Version 2.0 (the "License");
  * # you may not use this file except in compliance with the License.
@@ -220,7 +221,7 @@ T getObjectFromInnerMap<T>(Map<String, Object> map, String name,
 
 Map<String, T> getMapOfObjects<T>(Map<String, Object> map, String name,
     Context context, FromMapFunction<T> fromMap,
-    {bool req = false}) {
+    {bool req = false, Iterable<String> list}) {
   final value = getMap(map, name, context, req: req);
 
   if (value == null) {
@@ -230,6 +231,10 @@ Map<String, T> getMapOfObjects<T>(Map<String, Object> map, String name,
   context.path.add(name);
   final mapOfObjects = <String, T>{};
   for (final key in value.keys) {
+    if (list != null && !list.contains(key)) {
+      context.addIssue(SchemaError.unexpectedProperty, name: key);
+    }
+
     final innerMap = getMap(value, key, context);
     context.path.add(key);
     mapOfObjects[key] = fromMap(innerMap, context);
