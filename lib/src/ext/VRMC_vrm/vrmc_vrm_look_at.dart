@@ -72,7 +72,7 @@ class VrmcVrmLookAt extends GltfProperty {
             map, RANGE_MAP_VERTICAL_DOWN, context, RangeMap.fromMap),
         getObjectFromInnerMap(
             map, RANGE_MAP_VERTICAL_UP, context, RangeMap.fromMap),
-        getExtensions(map, VrmcVrm, context),
+        getExtensions(map, VrmcVrmLookAt, context),
         getExtras(map, context));
   }
 }

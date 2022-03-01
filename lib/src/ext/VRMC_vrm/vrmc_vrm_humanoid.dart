@@ -41,7 +41,7 @@ class VrmcVrmHumanoid extends GltfProperty {
     return VrmcVrmHumanoid._(
         getObjectFromInnerMap(map, HUMAN_BONES, context, HumanBones.fromMap,
             req: true),
-        getExtensions(map, VrmcVrm, context),
+        getExtensions(map, VrmcVrmHumanoid, context),
         getExtras(map, context));
   }
 
@@ -674,7 +674,7 @@ class HumanBone extends GltfProperty {
     }
 
     return HumanBone._(getIndex(map, NODE, context, req: true),
-        getExtensions(map, VrmcVrm, context), getExtras(map, context));
+        getExtensions(map, HumanBone, context), getExtras(map, context));
   }
 
   @override

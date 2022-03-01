@@ -115,6 +115,12 @@ class VrmcVrm extends GltfProperty {
       firstPerson.link(gltf, context);
       context.path.removeLast();
     }
+
+    if (expressions != null) {
+      context.path.add(EXPRESSIONS);
+      expressions.link(gltf, context);
+      context.path.removeLast();
+    }
   }
 }
 
