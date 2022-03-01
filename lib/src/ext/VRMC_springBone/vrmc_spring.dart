@@ -53,7 +53,18 @@ class Spring extends GltfProperty {
   }
 
   @override
-  void link(Gltf gltf, Context context) {}
+  void link(Gltf gltf, Context context) {
+    if (joints != null) {
+      context.path.add(JOINTS);
+      for (var i = 0; i < joints.length; i++) {
+        final joint = joints[i];
+        context.path.add(i.toString());
+        joint.link(gltf, context);
+        context.path.removeLast();
+      }
+      context.path.removeLast();
+    }
+  }
 }
 
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.joint.schema.json
@@ -81,7 +92,7 @@ class Joint extends GltfProperty {
   final List<double> gravityDir;
   final double dragForce;
 
-  Node node;
+  Node _node;
 
   Joint._(
       this._nodeIndex,
@@ -109,5 +120,22 @@ class Joint extends GltfProperty {
         getFloat(map, DRAG_FORCE, context, min: 0, def: 0.5, max: 1),
         getExtensions(map, Joint, context),
         getExtras(map, context));
+  }
+
+  @override
+  void link(Gltf gltf, Context context) {
+    _node = gltf.nodes[_nodeIndex];
+
+    if (context.validate && _nodeIndex != -1) {
+      if (_node == null) {
+        context.addIssue(LinkError.unresolvedReference,
+            name: INDEX, args: [_nodeIndex]);
+      } else {
+        // Mark the node as joint, even if it's at the tail end.
+        _node
+          ..markAsUsed()
+          ..isJoint = true;
+      }
+    }
   }
 }

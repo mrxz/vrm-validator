@@ -32,6 +32,8 @@ class Collider extends GltfProperty {
   final int _nodeIndex;
   final ColliderShape shape;
 
+  Node _node;
+
   Collider._(this._nodeIndex, this.shape, Map<String, Object> extensions,
       Object extras)
       : super(extensions, extras);
@@ -49,7 +51,20 @@ class Collider extends GltfProperty {
   }
 
   @override
-  void link(Gltf gltf, Context context) {}
+  void link(Gltf gltf, Context context) {
+    _node = gltf.nodes[_nodeIndex];
+
+    if (context.validate && _nodeIndex != -1) {
+      if (_node == null) {
+        context.addIssue(LinkError.unresolvedReference,
+            name: INDEX, args: [_nodeIndex]);
+      } else {
+        _node
+          ..markAsUsed()
+          ..isCollider = true;
+      }
+    }
+  }
 }
 
 // https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.shape.schema.json
