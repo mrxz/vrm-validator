@@ -87,10 +87,10 @@ class MeshAnnotation extends GltfProperty {
     return MeshAnnotation._(
         getIndex(map, NODE, context, req: true),
         getString(map, TYPE, context, req: true, list: const [
+          'auto',
+          'both',
           'thirdPersonOnly',
           'firstPersonOnly',
-          'both',
-          'auto',
         ]),
         getExtensions(map, MeshAnnotation, context),
         getExtras(map, context));
