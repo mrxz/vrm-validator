@@ -389,7 +389,6 @@ class HumanBones {
     }
 
     linkBone(CHEST, chest);
-    linkBone(CHEST, chest);
     linkBone(HEAD, head);
     linkBone(HIPS, hips);
     linkBone(JAW, jaw);
