@@ -245,8 +245,23 @@ class MorphTargetBind extends GltfProperty {
     if (context.validate && _nodeIndex != -1) {
       if (_node == null) {
         context.addIssue(LinkError.unresolvedReference,
-            name: INDEX, args: [_nodeIndex]);
+            name: NODE, args: [_nodeIndex]);
       } else {
+        if (_node.mesh == null) {
+          context.addIssue(LinkError.vrm1MorphTargetNodeWithoutMesh,
+              name: NODE, args: [_nodeIndex]);
+        } else if (_morphTargetIndex != -1) {
+          // Check morph targets
+          final hasReferencedMorphTarget = _node.mesh.primitives
+              .map((e) => e.targets?.length)
+              .every((e) => e != null && _morphTargetIndex < e);
+
+          if (!hasReferencedMorphTarget) {
+            context.addIssue(LinkError.unresolvedReference,
+                name: INDEX, args: [_morphTargetIndex]);
+          }
+        }
+
         _node.markAsUsed();
       }
     }

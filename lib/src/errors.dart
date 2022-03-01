@@ -853,6 +853,11 @@ class LinkError extends IssueType {
       'KHR_MATERIALS_VARIANTS_NON_UNIQUE_VARIANT',
       (args) => 'This variant is used more than once for this mesh primitive.');
 
+  // VRM specific link errors
+  static final LinkError vrm1MorphTargetNodeWithoutMesh = LinkError._(
+      'VRM1_MORPH_TARGET_NODE_WITHOUT_MESH',
+      (args) => 'No mesh on node ${args[0]} for morph target bind.');
+
   LinkError._(String type, ErrorFunction message,
       [Severity severity = Severity.Error])
       : super(type, message, severity);
