@@ -23,7 +23,10 @@ import 'package:gltf/src/ext/extensions.dart';
 const String NAME = 'name';
 const String COLLIDERS = 'colliders';
 
-const List<String> COLLIDER_GROUP_MEMBERS = <String>[NAME, COLLIDERS];
+const List<String> COLLIDER_GROUP_MEMBERS = <String>[
+  NAME,
+  COLLIDERS,
+];
 
 class ColliderGroup extends GltfProperty {
   final String name;

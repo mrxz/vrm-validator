@@ -19,6 +19,7 @@ library gltf.extensions.vrmc_vrm;
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/VRMC_springBone/vmrc_collider_group.dart';
 import 'package:gltf/src/ext/VRMC_springBone/vrmc_collider.dart';
+import 'package:gltf/src/ext/VRMC_springBone/vrmc_spring.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
 // https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_springBone-1.0-beta
@@ -39,9 +40,10 @@ class VrmcSpringBone extends GltfProperty {
   final String specVersion;
   final List<Collider> colliders;
   final List<ColliderGroup> colliderGroups;
+  final List<Spring> springs;
 
   VrmcSpringBone._(this.specVersion, this.colliders, this.colliderGroups,
-      Map<String, Object> extensions, Object extras)
+      this.springs, Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
   static VrmcSpringBone fromMap(Map<String, Object> map, Context context) {
@@ -56,6 +58,7 @@ class VrmcSpringBone extends GltfProperty {
         specVersion,
         getObjectList(map, COLLIDERS, context, Collider.fromMap),
         getObjectList(map, COLLIDER_GROUPS, context, ColliderGroup.fromMap),
+        getObjectList(map, SPRINGS, context, Spring.fromMap),
         getExtensions(map, VrmcSpringBone, context),
         getExtras(map, context));
   }
