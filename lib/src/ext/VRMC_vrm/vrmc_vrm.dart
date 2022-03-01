@@ -42,7 +42,7 @@ const List<String> VRMC_VRM_MEMBERS = <String>[
   EXPRESSIONS
 ];
 
-class VrmcVrm extends GltfProperty {
+class VrmcVrm extends GltfProperty implements ResourceValidatable {
   final String specVersion;
   final VrmcVrmMeta meta;
   final VrmcVrmHumanoid humanoid;
@@ -121,6 +121,11 @@ class VrmcVrm extends GltfProperty {
       expressions.link(gltf, context);
       context.path.removeLast();
     }
+  }
+
+  @override
+  void validateResources(Gltf gltf, Context context) {
+    meta?.validateResources(gltf, context);
   }
 }
 

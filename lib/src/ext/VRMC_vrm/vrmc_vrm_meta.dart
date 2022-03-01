@@ -63,7 +63,7 @@ const List<String> VRMC_VRM_META_MEMBERS = <String>[
   OTHER_LICENSE_URL,
 ];
 
-class VrmcVrmMeta extends GltfProperty {
+class VrmcVrmMeta extends GltfProperty implements ResourceValidatable {
   final String name;
   final String version;
   final List<String> authors;
@@ -123,17 +123,31 @@ class VrmcVrmMeta extends GltfProperty {
         getString(map, CONTACT_INFORMATION, context),
         getStringList(map, REFERENCES, context),
         getString(map, THIRD_PARTY_LICENSES, context),
-        getIndex(map, THUMBNAIL_IMAGE, context),
-        getString(map, LICENSE_URL, context, req: true),
-        getString(map, AVATAR_PERMISSION, context),
+        getIndex(map, THUMBNAIL_IMAGE, context, req: false),
+        getString(map, LICENSE_URL, context,
+            req: true, list: const ['https://vrm.dev/licenses/1.0/']),
+        getString(map, AVATAR_PERMISSION, context, list: const [
+          'onlyAuthor',
+          'onlySeparatelyLicensedPerson',
+          'everyone',
+        ]),
         getBool(map, ALLOW_EXCESSIVELY_VIOLENT_USAGE, context),
         getBool(map, ALLOW_EXCESSIVELY_SEXUAL_USAGE, context),
-        getString(map, COMMERCIAL_USAGE, context),
+        getString(map, COMMERCIAL_USAGE, context, list: const [
+          'personalNonProfit',
+          'personalProfit',
+          'corporation',
+        ]),
         getBool(map, ALLOW_POLITICAL_OR_RELIGIOUS_USAGE, context),
         getBool(map, ALLOW_ANTISOCIAL_OR_HATE_USAGE, context),
-        getString(map, CREDIT_NOTATION, context),
+        getString(map, CREDIT_NOTATION, context,
+            list: const ['required', 'unnecessary']),
         getBool(map, ALLOW_REDISTRIBUTION, context),
-        getString(map, MODIFICATION, context),
+        getString(map, MODIFICATION, context, list: const [
+          'prohibited',
+          'allowModification',
+          'allowModificationRedistribution',
+        ]),
         getString(map, OTHER_LICENSE_URL, context),
         getExtensions(map, VrmcVrmMeta, context),
         getExtras(map, context));
@@ -150,6 +164,27 @@ class VrmcVrmMeta extends GltfProperty {
       } else {
         _thumbnailTexture.markAsUsed();
       }
+    }
+  }
+
+  @override
+  void validateResources(Gltf gltf, Context context) {
+    if (_thumbnailTexture == null) {
+      return;
+    }
+
+    const types = [IMAGE_JPEG, IMAGE_PNG];
+    final mimeType = _thumbnailTexture.source?.info?.mimeType;
+    if (mimeType != null && !types.contains(mimeType)) {
+      context.addIssue(SemanticError.vrm1InvalidThumbnailImageMimeType,
+          args: [mimeType]);
+    }
+
+    final width = _thumbnailTexture.source?.info?.width;
+    final height = _thumbnailTexture.source?.info?.height;
+    if (width != 1024 || height != 1024) {
+      context.addIssue(SemanticError.vrm1NonRecommendedThumbnailResolution,
+          args: [width, height]);
     }
   }
 }
