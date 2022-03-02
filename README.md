@@ -42,6 +42,8 @@ Validator writes a validation report (in JSON-format) with all found issues and 
   - KHR_materials_volume
   - KHR_mesh_quantization
   - KHR_texture_transform
+  - VRMC_materials_mtoon
+  - VRMC_springBone
   - VRMC_vrm
 - [Full list of detectable issues](ISSUES.md).
 
@@ -103,7 +105,7 @@ In rare cases, you may encounter various build issues usually caused by previous
 
 ### Drag-n-Drop Web Tool
 
-To build the drag-n-drop online validation tool (as hosted [here](https://github.khronos.org/glTF-Validator/)), follow these steps after installation:
+To build the drag-n-drop online validation tool (as hosted [here](https://vrm-validator.fern.solutions/)), follow these steps after installation:
 
 1. Run `dart run grinder web`.
 2. All needed files will be written to `build/web` directory.
@@ -132,7 +134,7 @@ To build an npm package for use in Node.js environment, follow these steps after
 1. Run `dart run grinder npm`.
 2. `gltf-validator` npm package will be written to `build/node`.
 
-Refer to the [npm package documentation](https://www.npmjs.com/package/gltf-validator) for additional information.
+Refer to the [npm package documentation](https://www.npmjs.com/package/vrm-validator) for additional information.
 
 #### Publishing
 
