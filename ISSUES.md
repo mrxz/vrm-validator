@@ -71,8 +71,11 @@
 |UNKNOWN_ASSET_MINOR_VERSION|Unknown glTF minor asset version: `%1`.|Warning|
 |UNRESERVED_EXTENSION_PREFIX|Extension uses unreserved extension prefix '`%1`'.|Warning|
 |UNUSED_EXTENSION_REQUIRED|Unused extension '`%1`' cannot be required.|Error|
-|VRM1_TEXTURE_TRANSFORM_ROTATION|Rotation of texture in KHR_texture_transform is set to `%1`, but should not be used or set to 0.0|Warning|
-|VRM1_TEXTURE_TRANSFORM_TEXCOORD|TexCoord in KHR_texture_transform is set to `%1`, but should not be used|Warning|
+|VRM1_BONE_NOT_UNIQUE|Bones for "`%1`" and "`%2`" are not unique, both use bone `%3`.|Error|
+|VRM1_INVALID_THUMBNAIL_IMAGE_MIME_TYPE|Invalid thumbnail image mime type (`%1`), only jpg or png are allowed.|Error|
+|VRM1_NON_RECOMMENDED_THUMBNAIL_RESOLUTION|Thumbnail resolution (`%1` x `%2`) is not the recommended 1024 x 1024.|Warning|
+|VRM1_TEXTURE_TRANSFORM_ROTATION|Rotation of texture in KHR_texture_transform is set to `%1`, but should not be used or set to 0.0.|Warning|
+|VRM1_TEXTURE_TRANSFORM_TEXCOORD|TexCoord in KHR_texture_transform is set to `%1`, but should not be used.|Warning|
 ## LinkError
 | Code | Message | Severity |
 |------|---------|----------|
@@ -120,6 +123,7 @@
 |UNRESOLVED_REFERENCE|Unresolved reference: `%1`.|Error|
 |UNSUPPORTED_EXTENSION|Cannot validate an extension as it is not supported by the validator: '`%1`'.|Information|
 |UNUSED_OBJECT|This object may be unused.|Information|
+|VRM1_MORPH_TARGET_NODE_WITHOUT_MESH|No mesh on node `%1` for morph target bind.|Error|
 ## DataError
 | Code | Message | Severity |
 |------|---------|----------|

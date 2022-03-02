@@ -1,3 +1,13 @@
+## 2.0.0-dev.3.6
+
+### New Features
+
+* Added support for `VRMC_vrm` extension.
+
+* Added support for `VRMC_springBone` extension.
+
+* Added support for `VRMC_materials_mtoon` extension.
+
 ## 2.0.0-dev.3.5
 
 ### Integration updates
