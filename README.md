@@ -2,6 +2,8 @@
 
 Tool to validate [VRM](https://vrm.dev/en/) ([glTF](https://github.com/KhronosGroup/glTF) + VRM extensions) assets.
 
+[Try it out in your browser](https://vrm-validator.fern.solutions/)
+
 This project is a fork of the official [glTF-validator](https://github.com/KhronosGroup/glTF-Validator), expanded to valdiate .vrm files.
 Validation is performed against [glTF 2.0](https://github.com/KhronosGroup/glTF/tree/master/specification/2.0) specification and [VRM 1.0-beta](https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_vrm-1.0-beta) specification.
 
@@ -49,7 +51,7 @@ Validator writes a validation report (in JSON-format) with all found issues and 
 
 ## Usage
 
-You can use hosted [web front-end tool](https://github.khronos.org/glTF-Validator). It works completely in the browser without any server-side processing.
+You can use hosted [web front-end tool](https://vrm-validator.fern.solutions/). It works completely in the browser without any server-side processing.
 
 #### Command Line Tool Usage
 ```text
