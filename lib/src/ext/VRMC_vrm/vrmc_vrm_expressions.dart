@@ -18,7 +18,7 @@ library gltf.extensions.vrmc_vrm;
 
 import 'package:gltf/src/base/gltf_property.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/expressions.md
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/expressions.md
 const String PRESET = 'preset';
 const String CUSTOM = 'custom';
 
@@ -100,7 +100,7 @@ class VrmcVrmExpressions extends GltfProperty {
 }
 
 // Expression
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.expressions.expression.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/schema/VRMC_vrm.expressions.expression.schema.json
 
 const String MORPH_TARGET_BINDS = 'morphTargetBinds';
 const String MATERIAL_COLOR_BINDS = 'materialColorBinds';
@@ -203,7 +203,7 @@ class Expression extends GltfProperty {
 }
 
 // Morph Target Bind
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.expressions.expression.morphTargetBind.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/schema/VRMC_vrm.expressions.expression.morphTargetBind.schema.json
 const String NODE = 'node';
 const String INDEX = 'index';
 const String WEIGHT = 'weight';
@@ -269,7 +269,7 @@ class MorphTargetBind extends GltfProperty {
 }
 
 // Material Color Bind
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.expressions.expression.materialColorBind.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/schema/VRMC_vrm.expressions.expression.materialColorBind.schema.json
 const String MATERIAL = 'material';
 const String TYPE = 'type';
 const String TARGET_VALUE = 'targetValue';
@@ -321,7 +321,7 @@ class MaterialColorBind extends GltfProperty {
 }
 
 // Texture Transform Bind
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.expressions.expression.textureTransformBind.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/schema/VRMC_vrm.expressions.expression.textureTransformBind.schema.json
 // Note: MATERIAL is already defined above
 const String SCALE = 'scale';
 const String OFFSET = 'offset';

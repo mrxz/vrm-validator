@@ -19,7 +19,7 @@ library gltf.extensions.vrmc_vrm;
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/lookAt.md
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/lookAt.md
 const String OFFSET_FROM_HEAD_BONE = 'offsetFromHeadBone';
 const String TYPE = 'type';
 const String RANGE_MAP_HORIZONTAL_INNER = 'rangeMapHorizontalInner';
@@ -78,7 +78,7 @@ class VrmcVrmLookAt extends GltfProperty {
 }
 
 // Range Map
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.lookAt.rangeMap.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/schema/VRMC_vrm.lookAt.rangeMap.schema.json
 
 const String INPUT_MAX_VALUE = 'inputMaxValue';
 const String OUTPUT_SCALE = 'outputScale';

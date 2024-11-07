@@ -16,7 +16,7 @@ npm install --save vrm-validator
 const fs = require('fs');
 const validator = require('vrm-validator');
 
-const asset = fs.readFileSync('./Avatar-1.0-beta.vrm');
+const asset = fs.readFileSync('./Avatar-1.0.vrm');
 
 validator.validateBytes(new Uint8Array(asset))
     .then((report) => console.info('Validation succeeded: ', report))
@@ -28,7 +28,7 @@ validator.validateBytes(new Uint8Array(asset))
 ```javascript
 const validator = require('vrm-validator');
 
-fetch('Avatar-1.0-beta.vrm')
+fetch('Avatar-1.0.vrm')
     .then((response) => response.arrayBuffer())
     .then((asset) => validator.validateBytes(new Uint8Array(asset)))
     .then((report) => console.info('Validation succeeded: ', report))

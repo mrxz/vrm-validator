@@ -19,7 +19,7 @@ library gltf.extensions.vrmc_vrm;
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/meta.md
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/meta.md
 const String NAME = 'name';
 const String VERSION = 'version';
 const String AUTHORS = 'authors';

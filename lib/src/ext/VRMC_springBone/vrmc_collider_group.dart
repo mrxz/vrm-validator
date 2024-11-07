@@ -20,7 +20,7 @@ import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/VRMC_springBone/vrmc_collider.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.colliderGroup.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0/schema/VRMC_springBone.colliderGroup.schema.json
 const String NAME = 'name';
 const String COLLIDERS = 'colliders';
 

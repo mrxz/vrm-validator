@@ -1,6 +1,6 @@
 name: gltf
 version: 2.0.0-dev.3.10
-description: Library for loading and validating VRM 1.0-beta assets (glTF 2.0 + VRM extensions)
+description: Library for loading and validating VRM 1.0 assets (glTF 2.0 + VRM extensions)
 homepage: https://github.com/mrxz/vrm-validator
 
 dependencies:

@@ -19,7 +19,7 @@ library gltf.extensions.vrmc_vrm;
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/humanoid.md
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/humanoid.md
 const String HUMAN_BONES = 'humanBones';
 
 const List<String> VRMC_VRM_HUMANOID_MEMBERS = <String>[
@@ -56,7 +56,7 @@ class VrmcVrmHumanoid extends GltfProperty {
 }
 
 // Human Bones
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.humanoid.humanBones.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/schema/VRMC_vrm.humanoid.humanBones.schema.json
 
 const String CHEST = 'chest';
 const String HEAD = 'head';
@@ -447,7 +447,7 @@ class HumanBones {
 }
 
 // Human Bone
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.humanoid.humanBones.humanBone.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/schema/VRMC_vrm.humanoid.humanBones.humanBone.schema.json
 
 const String NODE = 'node';
 

@@ -56,7 +56,7 @@ class KhrTextureTransform extends GltfProperty {
 
     final texCoord = getUint(map, TEX_COORD, context);
 
-    // https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_vrm-1.0-beta#obsolete-properties-of-khr_texture_transform-with-vrm1
+    // https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_vrm-1.0#obsolete-properties-of-khr_texture_transform-with-vrm1
     // `rotation` and `texCoord` are not recommended for VRM
     if (rotation != 0.0) {
       context.addIssue(SemanticError.vrm1TextureTransformRotation,

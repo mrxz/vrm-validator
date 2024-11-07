@@ -19,7 +19,7 @@ library gltf.extensions.vrmc_vrm;
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_materials_mtoon-1.0-beta/schema/VRMC_materials_mtoon.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_materials_mtoon-1.0/schema/VRMC_materials_mtoon.schema.json
 const String VRMC_MATERIALS_MTOON = 'VRMC_materials_mtoon';
 const String SPEC_VERSION = 'specVersion';
 const String TRANSPARENT_WITH_Z_WRITE = 'transparentWithZWrite';

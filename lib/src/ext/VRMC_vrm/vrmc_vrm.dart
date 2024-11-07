@@ -24,7 +24,7 @@ import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_look_at.dart';
 import 'package:gltf/src/ext/VRMC_vrm/vrmc_vrm_meta.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/README.md
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/README.md
 const String VRMC_VRM = 'VRMC_vrm';
 const String SPEC_VERSION = 'specVersion';
 const String META = 'meta';

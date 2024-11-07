@@ -19,7 +19,7 @@ library gltf.extensions.vrmc_vrm;
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.collider.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0/schema/VRMC_springBone.collider.schema.json
 const String NODE = 'node';
 const String SHAPE = 'shape';
 
@@ -68,7 +68,7 @@ class Collider extends GltfProperty {
   }
 }
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.shape.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0/schema/VRMC_springBone.shape.schema.json
 const String SPHERE = 'sphere';
 const String CAPSULE = 'capsule';
 const List<String> COLLIDER_SHAPE_MEMBERS = <String>[

@@ -19,7 +19,7 @@ library gltf.extensions.vrmc_vrm;
 import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/firstPerson.md
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/firstPerson.md
 const String MESH_ANNOTATIONS = 'meshAnnotations';
 
 const List<String> VRMC_VRM_FIRST_PERSON_MEMBERS = <String>[
@@ -60,7 +60,7 @@ class VrmcVrmFirstPerson extends GltfProperty {
 }
 
 // Mesh Annotation
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0-beta/schema/VRMC_vrm.firstPerson.meshAnnotation.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm-1.0/schema/VRMC_vrm.firstPerson.meshAnnotation.schema.json
 const String NODE = 'node';
 const String TYPE = 'type';
 

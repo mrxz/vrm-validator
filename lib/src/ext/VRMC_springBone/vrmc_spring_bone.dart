@@ -22,7 +22,7 @@ import 'package:gltf/src/ext/VRMC_springBone/vrmc_collider.dart';
 import 'package:gltf/src/ext/VRMC_springBone/vrmc_spring.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_springBone-1.0-beta
+// https://github.com/vrm-c/vrm-specification/tree/master/specification/VRMC_springBone-1.0
 const String VRMC_SPRING_BONE = 'VRMC_springBone';
 const String SPEC_VERSION = 'specVersion';
 const String COLLIDERS = 'colliders';

@@ -20,7 +20,7 @@ import 'package:gltf/src/base/gltf_property.dart';
 import 'package:gltf/src/ext/VRMC_springBone/vrmc_collider_group.dart';
 import 'package:gltf/src/ext/extensions.dart';
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.spring.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0/schema/VRMC_springBone.spring.schema.json
 const String NAME = 'name';
 const String JOINTS = 'joints';
 const String COLLIDER_GROUPS = 'colliderGroups';
@@ -100,7 +100,7 @@ class Spring extends GltfProperty {
   }
 }
 
-// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0-beta/schema/VRMC_springBone.joint.schema.json
+// https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_springBone-1.0/schema/VRMC_springBone.joint.schema.json
 const String NODE = 'node';
 const String HIT_RADIUS = 'hitRadius';
 const String STIFFNESS = 'stiffness';

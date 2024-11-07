@@ -231,7 +231,7 @@ Future<void> run(List<String> args) async {
 
   if (argResult?.rest?.length != 1) {
     errPipe
-      ..write('VRM 1.0-beta Validator, version $kGltfValidatorVersion\n')
+      ..write('VRM 1.0 Validator, version $kGltfValidatorVersion\n')
       ..write('Supported extensions:\n\t')
       ..write(Context.defaultExtensionNames.join('\n\t'))
       ..write('\n\n')
