@@ -24,21 +24,24 @@ import 'package:gltf/src/ext/extensions.dart';
 const String NAME = 'name';
 const String JOINTS = 'joints';
 const String COLLIDER_GROUPS = 'colliderGroups';
+const String CENTER = 'center';
 
 const List<String> SPRING_MEMBERS = <String>[
   NAME,
   JOINTS,
   COLLIDER_GROUPS,
+  CENTER,
 ];
 
 class Spring extends GltfProperty {
   final String name;
   final List<Joint> joints;
   final List<int> _colliderGroupIndices;
+  final int center;
 
   List<ColliderGroup> _colliderGroups;
 
-  Spring._(this.name, this.joints, this._colliderGroupIndices,
+  Spring._(this.name, this.joints, this._colliderGroupIndices, this.center,
       Map<String, Object> extensions, Object extras)
       : super(extensions, extras);
 
@@ -51,6 +54,7 @@ class Spring extends GltfProperty {
         getString(map, NAME, context),
         getObjectList(map, JOINTS, context, Joint.fromMap, req: true),
         getIndicesList(map, COLLIDER_GROUPS, context),
+        getIndex(map, CENTER, context, req: false),
         getExtensions(map, Spring, context),
         getExtras(map, context));
   }
@@ -64,6 +68,19 @@ class Spring extends GltfProperty {
         context.path.add(i.toString());
         joint.link(gltf, context);
         context.path.removeLast();
+      }
+      context.path.removeLast();
+    }
+
+    if (center != -1) {
+      context.path.add(CENTER);
+      var node = gltf.nodes[center];
+      if (node == null) {
+        context.addIssue(LinkError.unresolvedReference,
+            name: INDEX, args: [center]);
+      } else {
+        // Mark the center node used
+        node.markAsUsed();
       }
       context.path.removeLast();
     }

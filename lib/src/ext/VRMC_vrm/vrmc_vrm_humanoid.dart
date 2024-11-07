@@ -81,8 +81,8 @@ const String LEFT_RING_INTERMEDIATE = 'leftRingIntermediate';
 const String LEFT_RING_PROXIMAL = 'leftRingProximal';
 const String LEFT_SHOULDER = 'leftShoulder';
 const String LEFT_THUMB_DISTAL = 'leftThumbDistal';
-const String LEFT_THUMB_INTERMEDIATE = 'leftThumbIntermediate';
 const String LEFT_THUMB_PROXIMAL = 'leftThumbProximal';
+const String LEFT_THUMB_METACARPAL = 'leftThumbMetacarpal';
 const String LEFT_TOES = 'leftToes';
 const String LEFT_UPPER_ARM = 'leftUpperArm';
 const String LEFT_UPPER_LEG = 'leftUpperLeg';
@@ -106,8 +106,8 @@ const String RIGHT_RING_INTERMEDIATE = 'rightRingIntermediate';
 const String RIGHT_RING_PROXIMAL = 'rightRingProximal';
 const String RIGHT_SHOULDER = 'rightShoulder';
 const String RIGHT_THUMB_DISTAL = 'rightThumbDistal';
-const String RIGHT_THUMB_INTERMEDIATE = 'rightThumbIntermediate';
 const String RIGHT_THUMB_PROXIMAL = 'rightThumbProximal';
+const String RIGHT_THUMB_METACARPAL = 'rightThumbMetacarpal';
 const String RIGHT_TOES = 'rightToes';
 const String RIGHT_UPPER_ARM = 'rightUpperArm';
 const String RIGHT_UPPER_LEG = 'rightUpperLeg';
@@ -138,7 +138,7 @@ const List<String> HUMAN_BONES_MEMBERS = <String>[
   LEFT_RING_PROXIMAL,
   LEFT_SHOULDER,
   LEFT_THUMB_DISTAL,
-  LEFT_THUMB_INTERMEDIATE,
+  LEFT_THUMB_METACARPAL,
   LEFT_THUMB_PROXIMAL,
   LEFT_TOES,
   LEFT_UPPER_ARM,
@@ -163,7 +163,7 @@ const List<String> HUMAN_BONES_MEMBERS = <String>[
   RIGHT_RING_PROXIMAL,
   RIGHT_SHOULDER,
   RIGHT_THUMB_DISTAL,
-  RIGHT_THUMB_INTERMEDIATE,
+  RIGHT_THUMB_METACARPAL,
   RIGHT_THUMB_PROXIMAL,
   RIGHT_TOES,
   RIGHT_UPPER_ARM,
@@ -196,8 +196,8 @@ class HumanBones {
   final HumanBone leftRingProximal;
   final HumanBone leftShoulder;
   final HumanBone leftThumbDistal;
-  final HumanBone leftThumbIntermediate;
   final HumanBone leftThumbProximal;
+  final HumanBone leftThumbMetacarpal;
   final HumanBone leftToes;
   final HumanBone leftUpperArm;
   final HumanBone leftUpperLeg;
@@ -221,8 +221,8 @@ class HumanBones {
   final HumanBone rightRingProximal;
   final HumanBone rightShoulder;
   final HumanBone rightThumbDistal;
-  final HumanBone rightThumbIntermediate;
   final HumanBone rightThumbProximal;
+  final HumanBone rightThumbMetacarpal;
   final HumanBone rightToes;
   final HumanBone rightUpperArm;
   final HumanBone rightUpperLeg;
@@ -253,8 +253,8 @@ class HumanBones {
       this.leftRingProximal,
       this.leftShoulder,
       this.leftThumbDistal,
-      this.leftThumbIntermediate,
       this.leftThumbProximal,
+      this.leftThumbMetacarpal,
       this.leftToes,
       this.leftUpperArm,
       this.leftUpperLeg,
@@ -278,8 +278,8 @@ class HumanBones {
       this.rightRingProximal,
       this.rightShoulder,
       this.rightThumbDistal,
-      this.rightThumbIntermediate,
       this.rightThumbProximal,
+      this.rightThumbMetacarpal,
       this.rightToes,
       this.rightUpperArm,
       this.rightUpperLeg,
@@ -333,9 +333,9 @@ class HumanBones {
         getObjectFromInnerMap(
             map, LEFT_THUMB_DISTAL, context, HumanBone.fromMap),
         getObjectFromInnerMap(
-            map, LEFT_THUMB_INTERMEDIATE, context, HumanBone.fromMap),
-        getObjectFromInnerMap(
             map, LEFT_THUMB_PROXIMAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(
+            map, LEFT_THUMB_METACARPAL, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, LEFT_TOES, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, LEFT_UPPER_ARM, context, HumanBone.fromMap,
             req: true),
@@ -363,8 +363,8 @@ class HumanBones {
         getObjectFromInnerMap(map, RIGHT_RING_PROXIMAL, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, RIGHT_SHOULDER, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, RIGHT_THUMB_DISTAL, context, HumanBone.fromMap),
-        getObjectFromInnerMap(map, RIGHT_THUMB_INTERMEDIATE, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, RIGHT_THUMB_PROXIMAL, context, HumanBone.fromMap),
+        getObjectFromInnerMap(map, RIGHT_THUMB_METACARPAL, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, RIGHT_TOES, context, HumanBone.fromMap),
         getObjectFromInnerMap(map, RIGHT_UPPER_ARM, context, HumanBone.fromMap, req: true),
         getObjectFromInnerMap(map, RIGHT_UPPER_LEG, context, HumanBone.fromMap, req: true),
@@ -411,8 +411,8 @@ class HumanBones {
     linkBone(LEFT_RING_PROXIMAL, leftRingProximal);
     linkBone(LEFT_SHOULDER, leftShoulder);
     linkBone(LEFT_THUMB_DISTAL, leftThumbDistal);
-    linkBone(LEFT_THUMB_INTERMEDIATE, leftThumbIntermediate);
     linkBone(LEFT_THUMB_PROXIMAL, leftThumbProximal);
+    linkBone(LEFT_THUMB_METACARPAL, leftThumbMetacarpal);
     linkBone(LEFT_TOES, leftToes);
     linkBone(LEFT_UPPER_ARM, leftUpperArm);
     linkBone(LEFT_UPPER_LEG, leftUpperLeg);
@@ -436,8 +436,8 @@ class HumanBones {
     linkBone(RIGHT_RING_PROXIMAL, rightRingProximal);
     linkBone(RIGHT_SHOULDER, rightShoulder);
     linkBone(RIGHT_THUMB_DISTAL, rightThumbDistal);
-    linkBone(RIGHT_THUMB_INTERMEDIATE, rightThumbIntermediate);
     linkBone(RIGHT_THUMB_PROXIMAL, rightThumbProximal);
+    linkBone(RIGHT_THUMB_METACARPAL, rightThumbMetacarpal);
     linkBone(RIGHT_TOES, rightToes);
     linkBone(RIGHT_UPPER_ARM, rightUpperArm);
     linkBone(RIGHT_UPPER_LEG, rightUpperLeg);

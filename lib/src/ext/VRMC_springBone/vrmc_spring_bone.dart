@@ -52,7 +52,7 @@ class VrmcSpringBone extends GltfProperty {
     }
 
     final specVersion = getString(map, SPEC_VERSION, context,
-        req: true, regexp: RegExp(r'^1\.0-beta$'));
+        req: true, regexp: RegExp(r'^1\.0$'));
 
     return VrmcSpringBone._(
         specVersion,

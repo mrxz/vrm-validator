@@ -142,7 +142,7 @@ class VrmcMaterialsMtoon extends GltfProperty {
     }
 
     final specVersion = getString(map, SPEC_VERSION, context,
-        req: true, regexp: RegExp(r'^1\.0-beta$'));
+        req: true, regexp: RegExp(r'^1\.0$'));
 
     return VrmcMaterialsMtoon._(
         specVersion,
@@ -166,8 +166,10 @@ class VrmcMaterialsMtoon extends GltfProperty {
             lengthsList: const [3], def: [0, 0, 0]),
         getObjectFromInnerMap(
             map, RIM_MULTIPLY_TEXTURE, context, TextureInfo.fromMap),
-        getFloat(map, RIM_LIGHTING_MIX_FACTOR, context, def: 0),
-        getFloat(map, PARAMETRIC_RIM_FRESNEL_POWER_FACTOR, context, def: 1),
+        getFloat(map, RIM_LIGHTING_MIX_FACTOR, context,
+            min: 0.0, max: 1.0, def: 1.0),
+        getFloat(map, PARAMETRIC_RIM_FRESNEL_POWER_FACTOR, context,
+            min: 0.0, def: 5.0),
         getFloat(map, PARAMETRIC_RIM_LIFT_FACTOR, context, def: 0),
         getString(map, OUTLINE_WIDTH_MODE, context,
             list: ['none', 'worldCoordinates', 'screenCoordinates'],

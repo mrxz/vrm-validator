@@ -84,7 +84,7 @@ class VrmcVrmMeta extends GltfProperty implements ResourceValidatable {
   final String modification;
   final String otherLicenseUrl;
 
-  Texture _thumbnailTexture;
+  Image _thumbnailImage;
 
   VrmcVrmMeta._(
       this.name,
@@ -155,33 +155,33 @@ class VrmcVrmMeta extends GltfProperty implements ResourceValidatable {
 
   @override
   void link(Gltf gltf, Context context) {
-    _thumbnailTexture = gltf.textures[_thumbnailImageIndex];
+    _thumbnailImage = gltf.images[_thumbnailImageIndex];
 
     if (context.validate && _thumbnailImageIndex != -1) {
-      if (_thumbnailTexture == null) {
+      if (_thumbnailImage == null) {
         context.addIssue(LinkError.unresolvedReference,
-            name: INDEX, args: [_thumbnailImageIndex]);
+            name: THUMBNAIL_IMAGE, args: [_thumbnailImageIndex]);
       } else {
-        _thumbnailTexture.markAsUsed();
+        _thumbnailImage.markAsUsed();
       }
     }
   }
 
   @override
   void validateResources(Gltf gltf, Context context) {
-    if (_thumbnailTexture == null) {
+    if (_thumbnailImage == null) {
       return;
     }
 
     const types = [IMAGE_JPEG, IMAGE_PNG];
-    final mimeType = _thumbnailTexture.source?.info?.mimeType;
+    final mimeType = _thumbnailImage.info?.mimeType;
     if (mimeType != null && !types.contains(mimeType)) {
       context.addIssue(SemanticError.vrm1InvalidThumbnailImageMimeType,
           args: [mimeType]);
     }
 
-    final width = _thumbnailTexture.source?.info?.width;
-    final height = _thumbnailTexture.source?.info?.height;
+    final width = _thumbnailImage.info?.width;
+    final height = _thumbnailImage.info?.height;
     if (width != 1024 || height != 1024) {
       context.addIssue(SemanticError.vrm1NonRecommendedThumbnailResolution,
           args: [width, height]);

@@ -45,7 +45,8 @@ class Collider extends GltfProperty {
 
     return Collider._(
         getIndex(map, NODE, context),
-        getObjectFromInnerMap(map, SHAPE, context, ColliderShape.fromMap),
+        getObjectFromInnerMap(map, SHAPE, context, ColliderShape.fromMap,
+            req: true),
         getExtensions(map, Collider, context),
         getExtras(map, context));
   }
@@ -142,7 +143,7 @@ class ColliderShape extends GltfProperty {
 
     if (context.validate && (hasSphere && hasCapsule) ||
         (!hasSphere && !hasCapsule)) {
-      context.addIssue(SchemaError.oneOfMismatch, args: CAMERA_TYPES);
+      context.addIssue(SchemaError.oneOfMismatch, args: COLLIDER_SHAPE_MEMBERS);
     }
 
     return ColliderShape._(
