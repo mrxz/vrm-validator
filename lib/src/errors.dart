@@ -556,6 +556,18 @@ class SemanticError extends IssueType {
           Severity.Information);
 
   // VRM specific semantic errors
+  static final SemanticError vrm0Extension = SemanticError._(
+      'VRM0_VRM_EXTENSION',
+      (args) =>
+          'VRM 0.0 extensions are not validated',
+      Severity.Warning);
+
+  static final SemanticError vrm1MissingVrmExtension = SemanticError._(
+      'VRM1_NO_VRM_EXTENSION',
+      (args) =>
+          'The VRMC_vrm extension is missing; this file is NOT a .vrm file.',
+      Severity.Error);
+
   static final SemanticError vrm1TextureTransformRotation = SemanticError._(
       'VRM1_TEXTURE_TRANSFORM_ROTATION',
       (args) =>

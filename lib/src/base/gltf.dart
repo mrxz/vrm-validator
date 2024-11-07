@@ -97,6 +97,15 @@ class Gltf extends GltfProperty {
 
     context.initExtensions(extensionsUsed, extensionsRequired);
 
+    // Verify that the file IS a VRM file.
+    if (!extensionsUsed.contains('VRMC_vrm')) {
+      if (extensionsUsed.contains('VRM')) {
+        context.addIssue(SemanticError.vrm0Extension, name: EXTENSIONS_USED);
+      } else {
+        context.addIssue(SemanticError.vrm1MissingVrmExtension, name: EXTENSIONS_USED);
+      }
+    }
+
     // Helper function for converting JSON array to List of proper glTF objects
     SafeList<T> toSafeList<T>(String name, FromMapFunction<T> fromMap) {
       if (!map.containsKey(name)) {
