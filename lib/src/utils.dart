@@ -88,13 +88,26 @@ int getUint(Map<String, Object> map, String name, Context context,
   assert(max == -1 || max >= min);
   assert(list == null || list.every((v) => v >= 0));
   final value = _tryFixInt(_getGuarded(map, name, _kInteger, context));
-  if (value == null) {
-    if (def == null) {
+  if (value is int) {
+    if (list != null) {
+      if (!checkEnum<int>(name, value, list, context)) {
+        return -1;
+      }
+    } else if ((value < min) || (max != -1 && value > max)) {
+      context.addIssue(SchemaError.valueNotInRange, name: name, args: [value]);
       return -1;
     }
-    return def;
+    return value;
+  } else if (value == null) {
+    if (!req) {
+      return def;
+    }
+    context.addIssue(SchemaError.undefinedProperty, args: [name]);
+  } else {
+    context.addIssue(SchemaError.typeMismatch,
+        name: name, args: [value, _kInteger]);
   }
-  return value;
+  return -1;
 }
 
 int getInt(Map<String, Object> map, String name, Context context,
