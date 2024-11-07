@@ -283,6 +283,7 @@ class Gltf extends GltfProperty {
       gltf.nodes.forEachWithIndices((i, node) {
         if (!node.isJoint &&
             !node.isCollider &&
+            !node.isConstraintSource &&
             node.children == null &&
             node.mesh == null &&
             node.camera == null &&

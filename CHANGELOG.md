@@ -8,6 +8,8 @@
 
 * Added support for `VRMC_materials_mtoon` extension.
 
+* Added support for `VRMC_node_constraint` extension.
+
 ## 2.0.0-dev.3.10
 
 ### New Features

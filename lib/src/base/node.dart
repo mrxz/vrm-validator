@@ -40,6 +40,7 @@ class Node extends GltfChildOfRootProperty {
 
   bool isJoint = false;
   bool isCollider = false;
+  bool isConstraintSource = false;
 
   Node._(
       this._cameraIndex,
