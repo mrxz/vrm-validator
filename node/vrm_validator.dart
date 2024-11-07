@@ -120,6 +120,12 @@ Future<Map<String, Object>> validateBytes(
   final _options = _checkOptionsObject(options);
   final context = _getContextFromOptions(_options);
 
+  // When the provided file uses .vrm enforce that it has VRM extensions.
+  // Otherwise only validate if the VRM extensions are used.
+  if ((_options?.uri as String)?.toLowerCase().endsWith('.vrm')) {
+    context.setVrm();
+  }
+
   GltfReader reader;
   switch ((_options?.format as String)?.toLowerCase()) {
     case 'glb':

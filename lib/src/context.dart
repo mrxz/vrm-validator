@@ -261,6 +261,13 @@ class Context {
     _isGlb = true;
   }
 
+  bool _isVrm = false;
+  bool get isVrm => _isVrm;
+
+  void setVrm() {
+    _isVrm = true;
+  }
+
   final List<String> imageMimeTypes = <String>[IMAGE_JPEG, IMAGE_PNG];
 
   final Map<String, Set<AccessorFormat>> attributeAccessorFormats =

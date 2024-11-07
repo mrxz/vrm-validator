@@ -176,6 +176,12 @@ Future<ValidationResult> _doValidate(Map<String, File> files) async {
     return null;
   }
 
+  // When the provided file uses .vrm enforce that it has VRM extensions.
+  // Otherwise only validate if the VRM extensions are used.
+  if (assetFilename.toLowerCase().endsWith('.vrm')) {
+    context.setVrm();
+  }
+
   if (assetFilename.toLowerCase().endsWith('.gltf')) {
     reader = GltfJsonReader(_getFileStream(files[assetFilename]), context);
   } else {

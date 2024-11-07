@@ -98,11 +98,12 @@ class Gltf extends GltfProperty {
     context.initExtensions(extensionsUsed, extensionsRequired);
 
     // Verify that the file IS a VRM file.
-    if (!extensionsUsed.contains('VRMC_vrm')) {
+    if (context.isVrm && !extensionsUsed.contains('VRMC_vrm')) {
       if (extensionsUsed.contains('VRM')) {
         context.addIssue(SemanticError.vrm0Extension, name: EXTENSIONS_USED);
       } else {
-        context.addIssue(SemanticError.vrm1MissingVrmExtension, name: EXTENSIONS_USED);
+        context.addIssue(SemanticError.vrm1MissingVrmExtension,
+            name: EXTENSIONS_USED);
       }
     }
 

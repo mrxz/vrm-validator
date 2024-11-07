@@ -42,8 +42,12 @@ class GltfReaderResult {
 abstract class GltfReader {
   factory GltfReader.filename(Stream<List<int>> stream, String filename,
       [Context context]) {
-    if (filename.toLowerCase().endsWith('.glb') ||
-        filename.toLowerCase().endsWith('.vrm')) {
+    if (filename.toLowerCase().endsWith('.vrm')) {
+      context.setVrm();
+      return GlbReader(stream, context);
+    }
+
+    if (filename.toLowerCase().endsWith('.glb')) {
       return GlbReader(stream, context);
     }
 
