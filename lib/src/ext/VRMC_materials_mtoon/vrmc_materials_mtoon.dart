@@ -144,7 +144,7 @@ class VrmcMaterialsMtoon extends GltfProperty {
     final specVersion = getString(map, SPEC_VERSION, context,
         req: true, regexp: RegExp(r'^1\.0$'));
 
-    return VrmcMaterialsMtoon._(
+    final mtoon = VrmcMaterialsMtoon._(
         specVersion,
         getBool(map, TRANSPARENT_WITH_Z_WRITE, context),
         getInt(map, RENDER_QUEUE_OFFSET_NUMBER, context,
@@ -187,6 +187,17 @@ class VrmcMaterialsMtoon extends GltfProperty {
         getFloat(map, UV_ANIMATION_ROTATION_SPEED_FACTOR, context, def: 0),
         getExtensions(map, VrmcMaterialsMtoon, context),
         getExtras(map, context));
+
+    context.registerObjectsOwner(mtoon, [
+      mtoon.shadeMultiplyTexture,
+      mtoon.shadingShiftTexture,
+      mtoon.matcapTexture,
+      mtoon.rimMultiplyTexture,
+      mtoon.outlineWidthMultiplyTexture,
+      mtoon.uvAnimationMaskTexture,
+    ]);
+
+    return mtoon;
   }
 
   @override
