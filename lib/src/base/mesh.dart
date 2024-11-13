@@ -526,7 +526,13 @@ class MeshPrimitive extends GltfProperty {
         } else {
           _material.markAsUsed();
 
-          if (!(hasNormal && hasTangent) && _material.needsTangent) {
+          // Note: VRM files are instructed to not have tangents
+          if (context.isVrm) {
+            if (hasTangent) {
+              context.addIssue(LinkError.vrm1MeshPrimitiveTangents,
+                  name: MATERIAL);
+            }
+          } else if (!(hasNormal && hasTangent) && _material.needsTangent) {
             context.addIssue(
                 _material.canProvideTangent
                     ? LinkError.meshPrimitiveGeneratedTangentSpace

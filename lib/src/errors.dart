@@ -868,6 +868,12 @@ class LinkError extends IssueType {
       'VRM1_MORPH_TARGET_NODE_WITHOUT_MESH',
       (args) => 'No mesh on node ${args[0]} for morph target bind.');
 
+  static final LinkError vrm1MeshPrimitiveTangents = LinkError._(
+      'VRM1_MESH_PRIMITIVE_TANGENTS',
+      (args) =>
+          'Primitive has TANGENTS but VRM importers are expected to generate them.',
+      Severity.Warning);
+
   LinkError._(String type, ErrorFunction message,
       [Severity severity = Severity.Error])
       : super(type, message, severity);
