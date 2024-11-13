@@ -34,6 +34,7 @@ import 'package:gltf/src/ext/KHR_materials_unlit/khr_materials_unlit.dart';
 import 'package:gltf/src/ext/KHR_materials_variants/KHR_materials_variants.dart';
 import 'package:gltf/src/ext/KHR_materials_volume/khr_materials_volume.dart';
 import 'package:gltf/src/ext/KHR_mesh_quantization/khr_mesh_quantization.dart';
+import 'package:gltf/src/ext/KHR_texture_basisu/khr_texture_basisu.dart';
 import 'package:gltf/src/ext/KHR_texture_transform/khr_texture_transform.dart';
 import 'package:gltf/src/ext/VRMC_materials_mtoon/vrmc_materials_mtoon.dart';
 import 'package:gltf/src/ext/VRMC_node_constraint/vrmc_node_constraint.dart';
@@ -129,6 +130,7 @@ const List<Extension> kDefaultExtensions = <Extension>[
   khrMaterialsVariantsExtension,
   khrMaterialsVolumeExtension,
   khrMeshQuantizationExtension,
+  khrTextureBasisUExtension,
   khrTextureTransformExtension,
   vrmcMaterialMtoon,
   vrmcNodeConstraint,

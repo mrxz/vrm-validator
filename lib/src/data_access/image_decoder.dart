@@ -100,6 +100,9 @@ class ImageInfo {
           case ImageCodec.WebP:
             decoder = WebPInfoDecoder(subscription, completer);
             break;
+          case ImageCodec.KTX2:
+            decoder = KTX2InfoDecoder(subscription, completer);
+            break;
           default:
             subscription.cancel();
             completer.completeError(const UnsupportedImageFormatException());
@@ -740,6 +743,59 @@ class WebPInfoDecoder extends ImageInfoDecoder {
         colorPrimaries:
             hasCustomColorInfo ? _ColorPrimaries.Custom : _ColorPrimaries.sRGB,
         hasAnimation: hasAnimation));
+  }
+}
+
+class KTX2InfoDecoder extends ImageInfoDecoder {
+  @override
+  String get mimeType => 'image/ktx2';
+
+  // Accumulate 48 bytes of KTX2 header
+  final Uint8List _buffer = Uint8List(48);
+  int _bufferIndex = 0;
+
+  KTX2InfoDecoder(StreamSubscription<List<int>> subscription,
+      Completer<ImageInfo> completer)
+      : super(subscription, completer);
+
+  @override
+  void add(List<int> bytes) {
+    final availableDataLength =
+        min(bytes.length, _buffer.length - _bufferIndex);
+    _buffer.setRange(_bufferIndex, _bufferIndex += availableDataLength, bytes);
+
+    if (_bufferIndex < 48) {
+      return;
+    }
+
+    subscription.cancel();
+
+    final byteData = _buffer.buffer.asByteData();
+
+    // Verify file identifier
+    if (byteData.getUint32(0, Endian.big) != 0xAB4B5458 ||
+        byteData.getUint32(4, Endian.big) != 0x203230BB ||
+        byteData.getUint32(8, Endian.big) != 0x0D0A1A0A) {
+      _abort(const InvalidDataFormatException('Invalid KTX2 file identifier.'));
+      return;
+    }
+
+    final vkFormat = byteData.getUint32(12, Endian.little);
+    final typeSize = byteData.getUint32(16, Endian.little);
+    final width = byteData.getUint32(20, Endian.little);
+    final height = byteData.getUint32(24, Endian.little);
+    final depth = byteData.getUint32(28, Endian.little);
+    final layer = byteData.getUint32(32, Endian.little);
+    final face = byteData.getUint32(36, Endian.little);
+    final level = byteData.getUint32(40, Endian.little);
+    final compression = byteData.getUint32(44, Endian.little);
+
+    // TODO: Proper conversion from vkFormat to format
+    var format = Format.Unknown;
+
+    completer.complete(ImageInfo._(mimeType, 8, format, width, height,
+        colorTransfer: _ColorTransfer.sRGB,
+        colorPrimaries: _ColorPrimaries.sRGB));
   }
 }
 
